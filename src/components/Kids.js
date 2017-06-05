@@ -1,23 +1,29 @@
 import React from 'react';
-import Kid from './Kid';
+import KidDisplay from './KidDisplay';
 
 class Kids extends React.Component {
 
+  componentWillMount() {
+    this.props.getKids();
+  }
+
   render() {
-    const { kids, getKid } = this.props;
+    const { kids, getKid, deleteKid, showKid } = this.props;
     const kiddisplay = kids.map((kid, index) => {
       return(
-        <Kid
+        <KidDisplay
           key={index}
           index={index}
           kid={kid}
           getKid={getKid}
+          deleteKid={deleteKid}
+          showKid={showKid}
         />
       );
     });
 
     return(
-      <div className="kid-container">
+      <div>
         { kiddisplay }
       </div>
     );
