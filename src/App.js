@@ -7,7 +7,6 @@ import KidProfile from './components/KidProfile';
 import urlFor from './helpers/urlFor';
 import axios from 'axios';
 
-
 class App extends Component {
   constructor () {
     super();
