@@ -2,10 +2,14 @@ import React, { Component } from 'react';
 import './App.css';
 import Nav from './components/Nav';
 import Kids from './components/Kids';
+import User from './components/stores/models/User';
 import KidForm from './components/KidForm';
 import KidProfile from './components/KidProfile';
 import urlFor from './helpers/urlFor';
+import userAuth from './helpers/userAuth';
 import axios from 'axios';
+import New from './components/Sessions/New';
+
 
 class App extends Component {
   constructor () {
@@ -15,6 +19,8 @@ class App extends Component {
       showKid: false,
       kids: [],
       kid: {},
+      user: {},
+      signedIn: localStorage.getItem('signedIn'),
       error: ''
     };
   }
@@ -29,28 +35,32 @@ class App extends Component {
   goHome = () => {
     this.setState({
       showKidForm: false,
-      showKid: false
+      showKid: false,
+      kids: [],
+      signedIn: localStorage.getItem('signedIn')
     });
+    this.getKids();
+
   }
 
   getKids = () => {
-    axios.get(urlFor('kids'))
+    axios.get(urlFor('kids'),userAuth())
     .then((res) => this.setState({ kids: res.data }))
     .catch((err) => console.log(err.response) );
   }
 
   getKid = (id) => {
-    axios.get(urlFor(`kids/${id}`))
+    axios.get(urlFor(`kids/${id}`),userAuth())
     .then((res) => this.setState( { kid: res.data, showKid: true }) )
     .catch((err) => console.log(err.response.data) );
   }
 
   performSubmissionRequest = (data, id) => {
     if (id) {
-      return axios.patch(urlFor(`kids/${id}`), data);
+      return axios.patch(urlFor(`kids/${id}`), data,userAuth());
     }
     else {
-      return axios.post(urlFor(`kids`), data);
+      return axios.post(urlFor(`kids`), data,userAuth());
     }
   }
 
@@ -67,20 +77,64 @@ class App extends Component {
     });
   }
 
+  signIn = (data) => {
+    axios.post(urlFor(`sessions`), data)
+    .then((res) => {
+      this.setState( { user: res.data });
+      localStorage.setItem('token', this.state.user.authentication_token);
+      localStorage.setItem('email', this.state.user.email);
+      localStorage.setItem('signedIn', true);
+      this.goHome();
+    })
+    .catch((err) => {
+       const { errors } = err.response.status;
+        if (errors === 401) {
+          console.log("Unauthorized");
+        } else  {
+          console.log("Unknown Error");
+        }
+    });
+  }
+
+  signOut = () => {
+    const data = localStorage.getItem('token');
+    if (data !== ""){
+      axios.delete(urlFor(`sessions`), userAuth())
+      .then((res) => this.setState( { user: res.data }))
+      .catch((err) => console.log("Error") );
+      window.localStorage.setItem('token', "");
+      localStorage.setItem('signedIn', false);
+      this.goHome();
+    }
+    else {
+      localStorage.setItem('signedIn', false);
+      this.goHome();
+    }
+  }
+
+
   deleteKid = (id) => {
     const newKidsState = this.state.kids.filter((kid) => kid.id !== id );
-    axios.delete(urlFor(`kids/${id}`))
+    axios.delete(urlFor(`kids/${id}`),userAuth())
     .then((res) => this.setState( { kids: newKidsState }) )
     .catch((err) => console.log(err.response.data) );
   }
 
   render() {
 
-    const { showKid, showKidForm, kids, kid, error, submitKid, getKid, goHome } = this.state;
+    const { showKid, showKidForm, kids, kid, user,
+            error, submitKid, getKid, goHome, signIn, signOut, signedIn
+           } = this.state;
 
     return (
       <div className="App">
-        <Nav toggleKid={this.toggleKid} showKidForm={showKidForm} goHome={this.goHome} />
+        <Nav
+          toggleKid={this.toggleKid}
+          showKidForm={showKidForm}
+          goHome={this.goHome}
+          signOut={this.signOut}
+          signedIn={signedIn}
+        />
         <div className="container">
           { showKidForm ?
             <KidForm
@@ -100,6 +154,15 @@ class App extends Component {
               deleteKid={this.deleteKid}
               showKid={this.showKid}
             />
+          }
+          { signedIn === "false" ?
+            <New
+              user={user}
+              signedIn={signedIn}
+              signIn={this.signIn}
+            />
+            :
+            ""
           }
         </div>
       </div>
