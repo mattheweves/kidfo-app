@@ -10,7 +10,6 @@ import userAuth from './helpers/userAuth';
 import axios from 'axios';
 import New from './components/Sessions/New';
 
-
 class App extends Component {
   constructor () {
     super();
@@ -26,10 +25,18 @@ class App extends Component {
   }
 
   toggleKid = () => {
-    this.setState({
-      showKidForm: ! this.state.showKidForm,
-      kid: {}
-    });
+      this.setState({
+        showKidForm: ! this.state.showKidForm,
+        kid: {}
+      });
+  }
+
+  editKid = (kid) => {
+      console.log(kid.name);
+      this.setState({
+        kid: kid,
+        showKidForm: ! this.state.showKidForm
+      });
   }
 
   goHome = () => {
@@ -89,9 +96,9 @@ class App extends Component {
     .catch((err) => {
        const { errors } = err.response.status;
         if (errors === 401) {
-          console.log("Unauthorized");
+          this.setState({ error: "Missing Name!" });
         } else  {
-          console.log("Unknown Error");
+          this.setState({ error: "General Submission Error: Check your Data!"});
         }
     });
   }
@@ -123,7 +130,7 @@ class App extends Component {
   render() {
 
     const { showKid, showKidForm, kids, kid, user,
-            error, submitKid, getKid, goHome, signIn, signOut, signedIn
+            error, submitKid, getKid, goHome, signIn, signOut, signedIn, editKid
            } = this.state;
 
     return (
@@ -153,6 +160,7 @@ class App extends Component {
               getKid={this.getKid}
               deleteKid={this.deleteKid}
               showKid={this.showKid}
+              editKid={this.editKid}
             />
           }
           { signedIn === "false" ?

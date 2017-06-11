@@ -5,7 +5,6 @@ class Nav extends React.Component {
   render() {
 
     const { toggleKid, showKid, showKidForm, goHome, signOut, signedIn } = this.props;
-    console.log("Nav" + signedIn);
     return (
 
       <nav>

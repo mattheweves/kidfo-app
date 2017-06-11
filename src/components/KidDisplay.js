@@ -3,7 +3,7 @@ import React from 'react';
 class KidDisplay extends React.Component {
 
   render() {
-    const { kid, getKid, deleteKid } = this.props;
+    const { kid, getKid, deleteKid, editKid } = this.props;
 
     return (
       <div className="col s12 m8 offset-m2 l6 offset-l3">
@@ -21,7 +21,7 @@ class KidDisplay extends React.Component {
               </span>
             </div>
             <div className="col s4">
-              <span className="note-card-edit" onClick={() => getKid(kid.id)}>
+              <span className="note-card-edit" onClick={() => editKid(kid)}>
                 <i className="material-icons">mode_edit</i>
               </span>
               <span className="note-card-edit" onClick={() => deleteKid(kid.id)}>

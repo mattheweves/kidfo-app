@@ -8,7 +8,7 @@ class Kids extends React.Component {
   }
 
   render() {
-    const { kids, getKid, deleteKid, showKid } = this.props;
+    const { kids, getKid, deleteKid, showKid, editKid } = this.props;
     const kiddisplay = kids.map((kid, index) => {
       return(
         <KidDisplay
@@ -18,6 +18,7 @@ class Kids extends React.Component {
           getKid={getKid}
           deleteKid={deleteKid}
           showKid={showKid}
+          editKid={editKid}
         />
       );
     });
