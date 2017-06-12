@@ -9,6 +9,8 @@ import urlFor from './helpers/urlFor';
 import userAuth from './helpers/userAuth';
 import axios from 'axios';
 import New from './components/Sessions/New';
+import Invites from './components/Invites';
+import Invitation from './components/Invitation';
 
 class App extends Component {
   constructor () {
@@ -20,6 +22,7 @@ class App extends Component {
       kid: {},
       user: {},
       signedIn: localStorage.getItem('signedIn'),
+      invites: [],
       error: ''
     };
   }
@@ -44,15 +47,35 @@ class App extends Component {
       showKidForm: false,
       showKid: false,
       kids: [],
+      invites: [],
       signedIn: localStorage.getItem('signedIn')
     });
     this.getKids();
+    this.getInvites();
 
   }
 
   getKids = () => {
     axios.get(urlFor('kids'),userAuth())
     .then((res) => this.setState({ kids: res.data }))
+    .catch((err) => console.log(err.response) );
+  }
+
+  getInvites = () => {
+    axios.get(urlFor('invites'),userAuth())
+    .then((res) => this.setState({ invites: res.data }))
+    .catch((err) => console.log(err.response) );
+  }
+
+  sendInvite = (data) => {
+    axios.post(urlFor('invites'), data, userAuth())
+    .then((res) => console.log(res.data) )
+    .catch((err) => console.log(err.response) );
+  }
+
+  responseInvite = (id, action) => {
+    axios.post(urlFor(`invites/${id}/${action}`),userAuth())
+    .then((res) => this.setState({ invite: res.data }))
     .catch((err) => console.log(err.response) );
   }
 
@@ -129,8 +152,12 @@ class App extends Component {
 
   render() {
 
-    const { showKid, showKidForm, kids, kid, user,
-            error, submitKid, getKid, goHome, signIn, signOut, signedIn, editKid
+    const { goHome,
+            showKid, showKidForm, kids, kid,
+            submitKid, getKid, editKid,
+            user, signIn, signOut, signedIn,
+            invites, sendInvite,
+            error
            } = this.state;
 
     return (
@@ -162,6 +189,7 @@ class App extends Component {
               showKid={this.showKid}
               editKid={this.editKid}
             />
+
           }
           { signedIn === "false" ?
             <New
@@ -172,6 +200,16 @@ class App extends Component {
             :
             ""
           }
+        </div>
+        <div className="container" >
+            <Invites
+              getInvites={this.getInvites}
+              invites={invites}
+              responseInvite={this.responseInvite}
+            />
+            <Invitation
+              sendInvite={this.sendInvite}
+            />
         </div>
       </div>
     );
