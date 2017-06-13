@@ -214,6 +214,7 @@ class App extends Component {
             showKid ?
             <KidProfile
               kid={kid}
+              getFamily={this.getFamily}
             />
               :
             <Kids

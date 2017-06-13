@@ -17,6 +17,9 @@
   font-size: large;
 }
 
+.medical {
+  text-align: left;
+}
 /* flash.css */
 .flash-container {
   position: absolute;

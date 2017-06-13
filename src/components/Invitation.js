@@ -14,8 +14,7 @@ class Invitation extends React.Component {
 
 
   render() {
-
-
+    
     const { sendInvite } = this.props;
 
     return(

@@ -4,7 +4,7 @@ class KidProfile extends React.Component {
 
 
     render () {
-    const { kid } = this.props;
+    const { kid, family } = this.props;
 
 
     return (
@@ -17,7 +17,7 @@ class KidProfile extends React.Component {
             </div>
             <div className="col s6 offset-s3">
                 <h3>{kid.name}</h3>
-                Born: {kid.birthdate}, Gender: {kid.gender}
+                Born: {kid.birthdate}, Gender: {kid.gender}<br />
             </div>
           </div>
         </div>
@@ -47,7 +47,26 @@ class KidProfile extends React.Component {
             </div>
             </li>
         </ul>
-        </div>
+
+          <div className="row">
+             <div className="col s12 m12">
+               <div className="card blue-grey darken-1">
+                 <div className="card-content medical white-text">
+                   <span className="card-title">Medical / Health Card</span>
+                     <p>Health Insurance: {kid.family.insuranceprovider}<br />
+                     Enrolee ID: {kid.family.health_ins_enrollee_id}<br />
+                     Group #: {kid.family.health_ins_group_num}<br />
+                     Physician Name: {kid.family.physicianname}<br />
+                     Physician Phone: {kid.family.physicianphone}<br /></p>
+                 </div>
+                 <div className="card-action">
+                   <a href="#">Download</a>
+                 </div>
+               </div>
+             </div>
+          </div>
+
+    </div>
     );
 
   }
