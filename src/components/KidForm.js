@@ -35,7 +35,7 @@ class KidForm extends React.Component {
               <img className="responsive-img circle col s4 offset-s4" src="http://i.pravatar.cc/150?img=46"></img>
             </div>
             <div className="row">
-            <div className="input-field col s6">
+            <div className="input-field col s6 active">
                   <input
                     id="name"
                     defaultValue={kid.name}

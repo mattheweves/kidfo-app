@@ -57,7 +57,7 @@ class Invitation extends React.Component {
                            <label for="email">Email</label>
                      </div>
                      <div className="modal-footer">
-                       <input className="waves-effect waves-light btn" type="submit" value="Submit" onClick={() => this.modal('close')} />
+                       <input className="waves-effect waves-light btn" type="submit" value="Submit"/>
                      </div>
                  </form>
                </div>

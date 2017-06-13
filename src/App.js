@@ -5,12 +5,15 @@ import Kids from './components/Kids';
 import User from './components/stores/models/User';
 import KidForm from './components/KidForm';
 import KidProfile from './components/KidProfile';
+import Families from './components/Families';
+import FamilyProfile from './components/FamilyProfile';
 import urlFor from './helpers/urlFor';
 import userAuth from './helpers/userAuth';
 import axios from 'axios';
 import New from './components/Sessions/New';
 import Invites from './components/Invites';
 import Invitation from './components/Invitation';
+import Flash from './components/Flash';
 
 class App extends Component {
   constructor () {
@@ -18,8 +21,11 @@ class App extends Component {
     this.state = {
       showKidForm: false,
       showKid: false,
+      showFamily: false,
       kids: [],
       kid: {},
+      families: [],
+      family: {},
       user: {},
       signedIn: localStorage.getItem('signedIn'),
       invites: [],
@@ -46,11 +52,14 @@ class App extends Component {
     this.setState({
       showKidForm: false,
       showKid: false,
+      showFamily: false,
+      families: [],
       kids: [],
       invites: [],
       signedIn: localStorage.getItem('signedIn')
     });
     this.getKids();
+    this.getFamilies();
     this.getInvites();
 
   }
@@ -58,24 +67,6 @@ class App extends Component {
   getKids = () => {
     axios.get(urlFor('kids'),userAuth())
     .then((res) => this.setState({ kids: res.data }))
-    .catch((err) => console.log(err.response) );
-  }
-
-  getInvites = () => {
-    axios.get(urlFor('invites'),userAuth())
-    .then((res) => this.setState({ invites: res.data }))
-    .catch((err) => console.log(err.response) );
-  }
-
-  sendInvite = (data) => {
-    axios.post(urlFor('invites'), data, userAuth())
-    .then((res) => console.log(res.data) )
-    .catch((err) => console.log(err.response) );
-  }
-
-  responseInvite = (id, action) => {
-    axios.post(urlFor(`invites/${id}/${action}`),userAuth())
-    .then((res) => this.setState({ invite: res.data }))
     .catch((err) => console.log(err.response) );
   }
 
@@ -106,6 +97,45 @@ class App extends Component {
         }
     });
   }
+
+  getFamilies = () => {
+    axios.get(urlFor('families'),userAuth())
+    .then((res) => this.setState({ families: res.data }))
+    .catch((err) => console.log(err.response) );
+  }
+
+  getFamily = (id) => {
+    axios.get(urlFor(`family/${id}`),userAuth())
+    .then((res) => this.setState( { family: res.data, showFamily: true }) )
+    .catch((err) => console.log(err.response.data) );
+  }
+
+
+  getInvites = () => {
+    axios.get(urlFor('invites'),userAuth())
+    .then((res) => this.setState({ invites: res.data }))
+    .catch((err) => console.log(err.response) );
+  }
+
+  sendInvite = (data) => {
+    axios.post(urlFor('invites'), data, userAuth())
+    .then((res) => console.log(res.data) )
+    .catch((err) => {
+       const { errors } = err.response.data;
+        if (errors.email) {
+          this.setState({ error: "Email Cannot Be Blank!" });
+        } else  {
+          this.setState({ error: "Unknown Error"});
+        }
+    });
+  }
+
+  responseInvite = (id, action) => {
+    axios.post(urlFor(`invites/${id}/${action}`),userAuth())
+    .then((res) => this.setState({ invite: res.data }))
+    .catch((err) => console.log(err.response) );
+  }
+
 
   signIn = (data) => {
     axios.post(urlFor(`sessions`), data)
@@ -142,7 +172,6 @@ class App extends Component {
     }
   }
 
-
   deleteKid = (id) => {
     const newKidsState = this.state.kids.filter((kid) => kid.id !== id );
     axios.delete(urlFor(`kids/${id}`),userAuth())
@@ -150,11 +179,16 @@ class App extends Component {
     .catch((err) => console.log(err.response.data) );
   }
 
+  resetError = () => {
+    this.setState({ error: ''});
+  }
+
   render() {
 
     const { goHome,
             showKid, showKidForm, kids, kid,
             submitKid, getKid, editKid,
+            families, family, getFamily, showFamily,
             user, signIn, signOut, signedIn,
             invites, sendInvite,
             error
@@ -170,6 +204,7 @@ class App extends Component {
           signedIn={signedIn}
         />
         <div className="container">
+          {error && <Flash error={error} resetError={this.resetError} />}
           { showKidForm ?
             <KidForm
               kid={kid}
@@ -189,8 +224,20 @@ class App extends Component {
               showKid={this.showKid}
               editKid={this.editKid}
             />
-
           }
+          { showFamily && signedIn === "true" ?
+            <FamilyProfile
+              family={family}
+            />
+            :
+            <Families
+              getFamilies={this.getFamilies}
+              families={families}
+              getFamily={this.getFamily}
+              showFamily={this.showFamily}
+            />
+
+        }
           { signedIn === "false" ?
             <New
               user={user}
@@ -198,7 +245,9 @@ class App extends Component {
               signIn={this.signIn}
             />
             :
-            ""
+            <Invitation
+              sendInvite={this.sendInvite}
+            />
           }
         </div>
         <div className="container" >
@@ -206,9 +255,6 @@ class App extends Component {
               getInvites={this.getInvites}
               invites={invites}
               responseInvite={this.responseInvite}
-            />
-            <Invitation
-              sendInvite={this.sendInvite}
             />
         </div>
       </div>
