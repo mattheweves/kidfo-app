@@ -7,6 +7,7 @@ import KidForm from './components/KidForm';
 import KidProfile from './components/KidProfile';
 import Families from './components/Families';
 import FamilyProfile from './components/FamilyProfile';
+import EditFamily from './components/EditFamily';
 import urlFor from './helpers/urlFor';
 import userAuth from './helpers/userAuth';
 import axios from 'axios';
@@ -22,6 +23,7 @@ class App extends Component {
       showKidForm: false,
       showKid: false,
       showFamily: false,
+      editFamilyForm: false,
       kids: [],
       kid: {},
       families: [],
@@ -96,6 +98,19 @@ class App extends Component {
           this.setState({ error: "General Submission Error: Check your Data!"});
         }
     });
+  }
+
+  editMyFamily = () => {
+      this.setState({
+        editFamilyForm: ! this.state.editFamilyForm
+      });
+  }
+
+  editFamily = (data, id) => {
+    axios.patch(urlFor(`family/${id}`), data, userAuth())
+    .then((res) => this.setState( { family: res.data, editFamily: false }) )
+    .catch((err) => console.log(err.response) );
+    this.editMyFamily();
   }
 
   getFamilies = () => {
@@ -188,7 +203,7 @@ class App extends Component {
     const { goHome,
             showKid, showKidForm, kids, kid,
             submitKid, getKid, editKid,
-            families, family, getFamily, showFamily,
+            families, family, getFamily, showFamily, editFamily, editMyFamily, editFamilyForm,
             user, signIn, signOut, signedIn,
             invites, sendInvite,
             error
@@ -249,6 +264,16 @@ class App extends Component {
             <Invitation
               sendInvite={this.sendInvite}
             />
+          }
+          { editFamilyForm ?
+            <EditFamily
+             family={family}
+             editFamily={this.editFamily}
+            />
+            :
+            <div className="container" >
+                <a className="waves-effect waves-light btn" onClick={() => this.editMyFamily()}>Edit Family</a>
+            </div>
           }
         </div>
         <div className="container" >

@@ -21,7 +21,7 @@ class KidProfile extends React.Component {
             </div>
           </div>
         </div>
-        <ul className="collection">
+        <ul className="collection medical">
             <li className="collection-item">EAT</li>
             <li className="collection-item">
                 <div className="col s12">
@@ -49,7 +49,7 @@ class KidProfile extends React.Component {
         </ul>
 
           <div className="row">
-             <div className="col s12 m12">
+             <div className="col s12 m6">
                <div className="card blue-grey darken-1">
                  <div className="card-content medical white-text">
                    <span className="card-title">Medical / Health Card</span>
@@ -64,7 +64,19 @@ class KidProfile extends React.Component {
                  </div>
                </div>
              </div>
+             <div className="col s12 m6">
+               <div className="card blue-grey darken-1">
+                 <div className="card-content medical white-text">
+                   <span className="card-title">Emergency Contacts</span>
+                     <p>{kid.family.emerg_contact_1}<br />
+                     {kid.family.emerg_contact_1_phone}<br />
+                     {kid.family.emerg_contact_2}<br />
+                     {kid.family.emerg_contact_2_phone}<br /></p>
+                 </div>
+               </div>
+             </div>
           </div>
+
 
     </div>
     );
