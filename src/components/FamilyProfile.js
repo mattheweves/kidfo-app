@@ -1,5 +1,5 @@
 import React from 'react';
-import Kids from './Kids';
+import Kids from './containers/Kids';
 
 class FamilyProfile extends React.Component {
 
@@ -18,7 +18,7 @@ class FamilyProfile extends React.Component {
             </div>
             <div className="col s6 offset-s3">
                 <h3>{family.name}</h3>
-                
+
             </div>
           </div>
         </div>

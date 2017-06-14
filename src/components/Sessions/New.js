@@ -1,28 +1,60 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Link, BrowserHistory, Redirect } from 'react-router-dom';
+import urlFor from '../../helpers/urlFor';
+import userAuth from '../../helpers/userAuth';
+import axios from 'axios';
 
 class New extends React.Component {
 
   onSubmit(e) {
 
-    e.preventDefault();
+    //e.preventDefault();
     const formData = {
        email: this.email.value,
        password: this.password.value,
     };
-      this.props.signIn(formData);
+      this.signIn(formData);
 
     };
+
+  constructor () {
+      super();
+      this.state = {
+        user: {},
+        signedIn: localStorage.getItem('signedIn'),
+        error: ''
+      };
+  }
+
+  signIn = (data) => {
+    axios.post(urlFor(`sessions`), data)
+    .then((res) => {
+      this.setState( { user: res.data });
+      localStorage.setItem('token', this.state.user.authentication_token);
+      localStorage.setItem('email', this.state.user.email);
+      localStorage.setItem('signedIn', true);
+      <Redirect to={{
+        pathname: '/'
+      }}/>
+      //this.goHome();
+    })
+    .catch((err) => {
+       const { errors } = err.response.status;
+        if (errors === 401) {
+          this.setState({ error: "Missing Name!" });
+        } else  {
+          this.setState({ error: "General Submission Error: Check your Data!"});
+        }
+    });
+  }
 
 
   render() {
 
-    const { signIn, signedIn } = this.props;
+    const { user, signedIn } = this.state;
 
     return (
         <div className="row">
-          { signedIn === "true" ?
-            ""
-            :
           <form
             className="col s12"
             onSubmit={(e) => this.onSubmit(e)}
@@ -44,7 +76,6 @@ class New extends React.Component {
 
           <input className="waves-effect waves-light btn" type="submit" value="Submit" />
           </form>
-        }
       </div>
     );
   }

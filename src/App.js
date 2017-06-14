@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link, BrowserHistory } from 'react-router-dom';
 import './App.css';
 import Nav from './components/Nav';
-import Kids from './components/Kids';
+import Kids from './components/containers/Kids';
 import User from './components/stores/models/User';
 import KidForm from './components/KidForm';
 import KidProfile from './components/KidProfile';
@@ -24,7 +25,7 @@ class App extends Component {
       showKid: false,
       showFamily: false,
       editFamilyForm: false,
-      kids: [],
+    //  kids: [],
       kid: {},
       families: [],
       family: {},
@@ -60,17 +61,18 @@ class App extends Component {
       invites: [],
       signedIn: localStorage.getItem('signedIn')
     });
-    this.getKids();
+  //  this.getKids();
     this.getFamilies();
     this.getInvites();
 
   }
-
+/*
   getKids = () => {
     axios.get(urlFor('kids'),userAuth())
     .then((res) => this.setState({ kids: res.data }))
     .catch((err) => console.log(err.response) );
   }
+  */
 
   getKid = (id) => {
     axios.get(urlFor(`kids/${id}`),userAuth())
@@ -210,6 +212,7 @@ class App extends Component {
            } = this.state;
 
     return (
+      <Router>
       <div className="App">
         <Nav
           toggleKid={this.toggleKid}
@@ -218,6 +221,8 @@ class App extends Component {
           signOut={this.signOut}
           signedIn={signedIn}
         />
+        <Link to="/login">Login</Link>
+        <Route path="/login" component={New}/>
         <div className="container">
           {error && <Flash error={error} resetError={this.resetError} />}
           { showKidForm ?
@@ -233,7 +238,7 @@ class App extends Component {
             />
               :
             <Kids
-              getKids={this.getKids}
+              //getKids={this.getKids}
               kids={kids}
               getKid={this.getKid}
               deleteKid={this.deleteKid}
@@ -255,11 +260,11 @@ class App extends Component {
 
         }
           { signedIn === "false" ?
-            <New
+          /*  <New
               user={user}
               signedIn={signedIn}
               signIn={this.signIn}
-            />
+            />*/""
             :
             <Invitation
               sendInvite={this.sendInvite}
@@ -272,7 +277,9 @@ class App extends Component {
             />
             :
             <div className="container" >
+             <Link to={`/family/edit/`} >
                 <a className="waves-effect waves-light btn" onClick={() => this.editMyFamily()}>Edit Family</a>
+             </Link>
             </div>
           }
         </div>
@@ -284,6 +291,7 @@ class App extends Component {
             />
         </div>
       </div>
+      </Router>
     );
   }
 }

@@ -1,10 +1,27 @@
 import React from 'react';
-import KidDisplay from './KidDisplay';
+import KidDisplay from '../KidDisplay';
+import urlFor from '../../helpers/urlFor';
+import userAuth from '../../helpers/userAuth';
+import axios from 'axios';
+
 
 class Kids extends React.Component {
 
+  constructor () {
+    super();
+    this.state = {
+      kids: [],
+    };
+  }
+
   componentWillMount() {
-    this.props.getKids();
+    this.getKids();
+  }
+
+  getKids = () => {
+    axios.get(urlFor('kids'),userAuth())
+    .then((res) => this.setState({ kids: res.data }))
+    .catch((err) => console.log(err.response) );
   }
 
   render() {
