@@ -4,8 +4,8 @@ import './App.css';
 import Nav from './components/Nav';
 import Kids from './components/containers/Kids';
 import User from './components/stores/models/User';
-import KidForm from './components/KidForm';
-import KidProfile from './components/KidProfile';
+// import KidForm from './components/KidForm';
+// import KidProfile from './components/KidProfile';
 import Families from './components/Families';
 import FamilyProfile from './components/FamilyProfile';
 import EditFamily from './components/EditFamily';
@@ -21,12 +21,12 @@ class App extends Component {
   constructor () {
     super();
     this.state = {
-      showKidForm: false,
-      showKid: false,
+    //  showKidForm: false,
+    //  showKid: false,
       showFamily: false,
       editFamilyForm: false,
-    //  kids: [],
-      kid: {},
+      //kids: [],
+      //kid: {},
       families: [],
       family: {},
       user: {},
@@ -36,20 +36,20 @@ class App extends Component {
     };
   }
 
-  toggleKid = () => {
-      this.setState({
-        showKidForm: ! this.state.showKidForm,
-        kid: {}
-      });
-  }
+  // toggleKid = () => {
+  //     this.setState({
+  //       showKidForm: ! this.state.showKidForm,
+  //       kid: {}
+  //     });
+  // }
 
-  editKid = (kid) => {
-      console.log(kid.name);
-      this.setState({
-        kid: kid,
-        showKidForm: ! this.state.showKidForm
-      });
-  }
+  // editKid = (kid) => {
+  //     console.log(kid.name);
+  //     this.setState({
+  //       kid: kid,
+  //       showKidForm: ! this.state.showKidForm
+  //     });
+  // }
 
   goHome = () => {
     this.setState({
@@ -62,23 +62,23 @@ class App extends Component {
       signedIn: localStorage.getItem('signedIn')
     });
   //  this.getKids();
-    this.getFamilies();
-    this.getInvites();
+  //  this.getFamilies();
+  //this.getInvites();
 
   }
-/*
+
   getKids = () => {
     axios.get(urlFor('kids'),userAuth())
     .then((res) => this.setState({ kids: res.data }))
     .catch((err) => console.log(err.response) );
   }
-  */
 
-  getKid = (id) => {
-    axios.get(urlFor(`kids/${id}`),userAuth())
-    .then((res) => this.setState( { kid: res.data, showKid: true }) )
-    .catch((err) => console.log(err.response.data) );
-  }
+
+  // getKid = (id) => {
+  //   axios.get(urlFor(`kids/${id}`),userAuth())
+  //   .then((res) => this.setState( { kid: res.data, showKid: true }) )
+  //   .catch((err) => console.log(err.response.data) );
+  // }
 
   performSubmissionRequest = (data, id) => {
     if (id) {
@@ -89,18 +89,18 @@ class App extends Component {
     }
   }
 
-  submitKid = (data, id) => {
-    this.performSubmissionRequest(data,id)
-    .then((res) => this.setState( { kid: res.data, showKidForm: false }) )
-    .catch((err) => {
-       const { errors } = err.response.data;
-        if (errors.name) {
-          this.setState({ error: "Missing Name!" });
-        } else  {
-          this.setState({ error: "General Submission Error: Check your Data!"});
-        }
-    });
-  }
+  // submitKid = (data, id) => {
+  //   this.performSubmissionRequest(data,id)
+  //   .then((res) => this.setState( { kid: res.data, showKidForm: false }) )
+  //   .catch((err) => {
+  //      const { errors } = err.response.data;
+  //       if (errors.name) {
+  //         this.setState({ error: "Missing Name!" });
+  //       } else  {
+  //         this.setState({ error: "General Submission Error: Check your Data!"});
+  //       }
+  //   });
+  // }
 
   editMyFamily = () => {
       this.setState({
@@ -189,12 +189,12 @@ class App extends Component {
     }
   }
 
-  deleteKid = (id) => {
-    const newKidsState = this.state.kids.filter((kid) => kid.id !== id );
-    axios.delete(urlFor(`kids/${id}`),userAuth())
-    .then((res) => this.setState( { kids: newKidsState }) )
-    .catch((err) => console.log(err.response.data) );
-  }
+  // deleteKid = (id) => {
+  //   const newKidsState = this.state.kids.filter((kid) => kid.id !== id );
+  //   axios.delete(urlFor(`kids/${id}`),userAuth())
+  //   .then((res) => this.setState( { kids: newKidsState }) )
+  //   .catch((err) => console.log(err.response.data) );
+  // }
 
   resetError = () => {
     this.setState({ error: ''});
@@ -223,48 +223,30 @@ class App extends Component {
         />
         <Link to="/login">Login</Link>
         <Route path="/login" component={New}/>
+        <Route path="/kids" component={Kids}/>
+        <Route path="/home" component={App}/>
+
         <div className="container">
-          {error && <Flash error={error} resetError={this.resetError} />}
-          { showKidForm ?
-            <KidForm
-              kid={kid}
-              submitKid={this.submitKid}
-            />
-              :
-            showKid ?
-            <KidProfile
-              kid={kid}
-              getFamily={this.getFamily}
-            />
-              :
-            <Kids
-              //getKids={this.getKids}
-              kids={kids}
-              getKid={this.getKid}
-              deleteKid={this.deleteKid}
-              showKid={this.showKid}
-              editKid={this.editKid}
-            />
-          }
+          { error && <Flash error={error} resetError={this.resetError} /> }
           { showFamily && signedIn === "true" ?
             <FamilyProfile
               family={family}
             />
             :
             <Families
-              getFamilies={this.getFamilies}
+              //getFamilies={this.getFamilies}
               families={families}
               getFamily={this.getFamily}
               showFamily={this.showFamily}
             />
 
-        }
+          }
           { signedIn === "false" ?
-          /*  <New
+           <New
               user={user}
               signedIn={signedIn}
               signIn={this.signIn}
-            />*/""
+            />
             :
             <Invitation
               sendInvite={this.sendInvite}
@@ -285,7 +267,7 @@ class App extends Component {
         </div>
         <div className="container" >
             <Invites
-              getInvites={this.getInvites}
+            //  getInvites={this.getInvites}
               invites={invites}
               responseInvite={this.responseInvite}
             />

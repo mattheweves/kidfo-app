@@ -3,7 +3,7 @@ import ShowInvite from './ShowInvite';
 
 class Invites extends React.Component {
   componentWillMount() {
-    this.props.getInvites();
+    //this.props.getInvites();
   }
 
   render() {

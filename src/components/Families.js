@@ -4,7 +4,7 @@ import FamilyDisplay from './FamilyDisplay';
 class Families extends React.Component {
 
   componentWillMount() {
-    this.props.getFamilies();
+    //this.props.getFamilies();
   }
 
   render() {

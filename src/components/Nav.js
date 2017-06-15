@@ -1,4 +1,6 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Link, BrowserHistory } from 'react-router-dom';
+
 
 class Nav extends React.Component {
 
@@ -15,6 +17,7 @@ class Nav extends React.Component {
           {
             signedIn === "true" ?
             <div>
+              <Link to="/kids">Kids</Link>
               <li><a className="waves-effect waves-light btn" onClick={() => toggleKid()}>+ Kid</a></li>
               <li><a className="waves-effect waves-light btn" onClick={() => signOut()}>Sign Out</a></li>
             </div>
