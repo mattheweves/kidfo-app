@@ -13,15 +13,6 @@ class Kids extends React.Component {
   componentWillMount() {
     this.getKids();
   }
-  constructor (props) {
-    super(props);
-    this.state = {
-      kids: [],
-      showKidForm: false,
-      showKid: false,
-      kid: {}
-    };
-  }
 
   toggleKid = () => {
       this.setState({
@@ -80,22 +71,8 @@ class Kids extends React.Component {
   }
 
   render() {
-    const { kid, getKid, deleteKid, editKid,
-            showKid, showKidForm } = this.state;
-
-    const kiddisplay = this.state.kids.map((kid, index) => {
-      return(
-        <KidDisplay
-          key={index}
-          index={index}
-          kid={kid}
-          getKid={this.state.getKid}
-          deleteKid={this.state.deleteKid}
-          showKid={this.state.showKid}
-          editKid={this.state.editKid}
-        />
-      );
-    });
+    const { kids, kid, getKid, deleteKid, editKid,
+            showKid, showKidForm } = this.props.state;
 
     return(
       <div>
@@ -108,22 +85,25 @@ class Kids extends React.Component {
           :
         showKid ?
         <KidProfile
-          kid={kid}
+          kid={this.state.kid}
           getFamily={this.getFamily}
         />
           :
-          ""
-        //  { kiddisplay }
-        // <Kids
-        //   getKids={this.getKids}
-        //   kids={kids}
-        //   getKid={this.getKid}
-        //   deleteKid={this.deleteKid}
-        //   showKid={this.showKid}
-        //   editKid={this.editKid}
-        // />
+         this.state.kids.map((kid, index) => {
+            return(
+              <KidDisplay
+                key={index}
+                index={index}
+                kid={kid}
+                getKid={this.getKid}
+                deleteKid={this.deleteKid}
+                showKid={this.showKid}
+                editKid={this.editKid}
+              />
+            );
+          })
       }
-
+      <a className="waves-effect waves-light btn" onClick={() => this.toggleKid()}>+ Kid</a>
       </div>
     );
   }

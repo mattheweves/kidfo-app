@@ -6,7 +6,7 @@ class Nav extends React.Component {
 
   render() {
 
-    const { toggleKid, showKid, showKidForm, goHome, signOut, signedIn } = this.props;
+    const { goHome, signOut, signedIn } = this.props;
     return (
 
       <nav>
@@ -18,8 +18,7 @@ class Nav extends React.Component {
             signedIn === "true" ?
             <div>
               <Link to="/kids">Kids</Link>
-              <li><a className="waves-effect waves-light btn" onClick={() => toggleKid()}>+ Kid</a></li>
-              <li><a className="waves-effect waves-light btn" onClick={() => signOut()}>Sign Out</a></li>
+              <a className="waves-effect waves-light btn" onClick={() => signOut()}>Sign Out</a>
             </div>
             :
             ""
