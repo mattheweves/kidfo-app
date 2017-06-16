@@ -108,7 +108,7 @@ class App extends Component {
 
   editFamily = (data, id) => {
     axios.patch(urlFor(`family/${id}`), data, userAuth())
-    .then((res) => this.setState( { family: res.data, editFamily: false }) )
+    .then((res) => this.setState( { family: res.data }) )
     .catch((err) => console.log(err.response) );
     this.editMyFamily();
   }
@@ -198,6 +198,17 @@ class App extends Component {
     this.setState({ error: ''});
   }
 
+  helpermethod() {
+    return "TEST";
+  }
+
+  loginRoute() {
+    if(this.state.signedIn === false) {
+
+    }
+
+  }
+
   render() {
 
     const { goHome,
@@ -220,40 +231,6 @@ class App extends Component {
         />
         <div className="container">
           {error && <Flash error={error} resetError={this.resetError} />}
-          { showKidForm ?
-            <KidForm
-              kid={kid}
-              submitKid={this.submitKid}
-            />
-              :
-            showKid ?
-            <KidProfile
-              kid={kid}
-              getFamily={this.getFamily}
-            />
-              :
-            <Kids
-              getKids={this.getKids}
-              kids={kids}
-              getKid={this.getKid}
-              deleteKid={this.deleteKid}
-              showKid={this.showKid}
-              editKid={this.editKid}
-            />
-          }
-          { showFamily && signedIn === "true" ?
-            <FamilyProfile
-              family={family}
-            />
-            :
-            <Families
-              getFamilies={this.getFamilies}
-              families={families}
-              getFamily={this.getFamily}
-              showFamily={this.showFamily}
-            />
-
-        }
           { signedIn === "false" ?
             <New
               user={user}
@@ -261,28 +238,61 @@ class App extends Component {
               signIn={this.signIn}
             />
             :
+              showKidForm ?
+                <KidForm
+                  kid={kid}
+                  submitKid={this.submitKid}
+                />
+                  :
+                showKid ?
+                <KidProfile
+                  kid={kid}
+                  getFamily={this.getFamily}
+                />
+                  :
+                <Kids
+                  getKids={this.getKids}
+                  kids={kids}
+                  getKid={this.getKid}
+                  deleteKid={this.deleteKid}
+                  showKid={this.showKid}
+                  editKid={this.editKid}
+                />
+              }
+              {  showFamily ?
+                <FamilyProfile
+                  family={family}
+                />
+                :
+                editFamilyForm ?
+                 <EditFamily
+                  family={family}
+                  editFamily={this.editFamily}
+                 />
+                :
+                <div>
+                <Families
+                  getFamilies={this.getFamilies}
+                  families={families}
+                  getFamily={this.getFamily}
+                  showFamily={this.showFamily}
+                />
+                <div className="container" >
+                    <a className="waves-effect waves-light btn" onClick={() => this.editMyFamily()}>Edit Family</a>
+                </div>
+                </div>
+              }
+            </div>
+            <div className="container" >
+                <Invites
+                  getInvites={this.getInvites}
+                  invites={invites}
+                  responseInvite={this.responseInvite}
+                />
+            </div>
             <Invitation
               sendInvite={this.sendInvite}
             />
-          }
-          { editFamilyForm ?
-            <EditFamily
-             family={family}
-             editFamily={this.editFamily}
-            />
-            :
-            <div className="container" >
-                <a className="waves-effect waves-light btn" onClick={() => this.editMyFamily()}>Edit Family</a>
-            </div>
-          }
-        </div>
-        <div className="container" >
-            <Invites
-              getInvites={this.getInvites}
-              invites={invites}
-              responseInvite={this.responseInvite}
-            />
-        </div>
       </div>
     );
   }
