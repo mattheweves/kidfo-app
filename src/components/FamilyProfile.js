@@ -18,7 +18,10 @@ class FamilyProfile extends React.Component {
             </div>
             <div className="col s6 offset-s3">
                 <h3>{family.name}</h3>
+                Parents: { family.parents[0].first_name } { family.parents[0].last_name }< br/>
+                         { family.parents[1].first_name } { family.parents[1].last_name }< br/>
 
+                <p>{family.kids.length} Kids</p>
             </div>
           </div>
         </div>

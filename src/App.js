@@ -4,7 +4,7 @@ import './App.css';
 import Nav from './components/Nav';
 import Kids from './components/containers/Kids';
 import User from './components/stores/models/User';
-import Families from './components/Families';
+import Families from './components/containers/Families';
 import FamilyProfile from './components/FamilyProfile';
 import EditFamily from './components/EditFamily';
 import urlFor from './helpers/urlFor';
@@ -20,75 +20,36 @@ class App extends Component {
     super();
     this.state = {
       signedIn: localStorage.getItem('signedIn'),
-      showFamily: false,
-      editFamilyForm: false,
-      families: [],
-      family: {},
       user: {},
-      kids: [],
-      kid: {},
       invites: [],
-      showKidForm: false,
-      showKid: false,
       error: ''
     };
   }
 
   goHome = () => {
     this.setState({
-      showKidForm: false,
-      showKid: false,
-      showFamily: false,
-      families: [],
-      kids: [],
       invites: [],
       signedIn: localStorage.getItem('signedIn')
     });
-
-  //this.getInvites();
-
   }
 
-  getKids = () => {
-    axios.get(urlFor('kids'),userAuth())
-    .then((res) => this.setState({ kids: res.data }))
-    .catch((err) => console.log(err.response) );
+  signIn = (data) => {
+    axios.post(urlFor(`sessions`), data)
+    .then((res) => {
+      this.setState( { user: res.data });
+      localStorage.setItem('token', this.state.user.authentication_token);
+      localStorage.setItem('email', this.state.user.email);
+      localStorage.setItem('signedIn', true);
+    })
+    .catch((err) => {
+       const { errors } = err.response.status;
+        if (errors === 401) {
+          this.setState({ error: "Missing Name!" });
+        } else  {
+          this.setState({ error: "General Submission Error: Check your Data!"});
+        }
+    });
   }
-
-  performSubmissionRequest = (data, id) => {
-    if (id) {
-      return axios.patch(urlFor(`kids/${id}`), data,userAuth());
-    }
-    else {
-      return axios.post(urlFor(`kids`), data,userAuth());
-    }
-  }
-
-  editMyFamily = () => {
-      this.setState({
-        editFamilyForm: ! this.state.editFamilyForm
-      });
-  }
-
-  editFamily = (data, id) => {
-    axios.patch(urlFor(`family/${id}`), data, userAuth())
-    .then((res) => this.setState( { family: res.data, editFamily: false }) )
-    .catch((err) => console.log(err.response) );
-    this.editMyFamily();
-  }
-
-  getFamilies = () => {
-    axios.get(urlFor('families'),userAuth())
-    .then((res) => this.setState({ families: res.data }))
-    .catch((err) => console.log(err.response) );
-  }
-
-  getFamily = (id) => {
-    axios.get(urlFor(`family/${id}`),userAuth())
-    .then((res) => this.setState( { family: res.data, showFamily: true }) )
-    .catch((err) => console.log(err.response.data) );
-  }
-
 
   getInvites = () => {
     axios.get(urlFor('invites'),userAuth())
@@ -155,45 +116,16 @@ class App extends Component {
           signedIn={signedIn}
         />
         <Link to="/login">Login</Link>
-        <Route path="/login" component={New}/>
-        <Route path="/kids"
-          component={Kids}
-          kid={kid}
-          kids={kids}
+        <New
+               user={user}
+               signedIn={signedIn}
+               signIn={this.signIn}
         />
+        <Route path="/kids"  component={Kids}/>
+        <Route path="/families" component={Families} user={user}/>
         <Route path="/home" component={App}/>
-
         <div className="container">
           { error && <Flash error={error} resetError={this.resetError} /> }
-          { showFamily && signedIn === "true" ?
-            <FamilyProfile
-              family={family}
-            />
-            :
-            <Families
-              //getFamilies={this.getFamilies}
-              families={families}
-              getFamily={this.getFamily}
-              showFamily={this.showFamily}
-            />
-
-          }
-            <Invitation
-              sendInvite={this.sendInvite}
-            />
-
-          { editFamilyForm ?
-            <EditFamily
-             family={family}
-             editFamily={this.editFamily}
-            />
-            :
-            <div className="container" >
-             <Link to={`/family/edit/`} >
-                <a className="waves-effect waves-light btn" onClick={() => this.editMyFamily()}>Edit Family</a>
-             </Link>
-            </div>
-          }
         </div>
         <div className="container" >
             <Invites

@@ -10,8 +10,19 @@ import axios from 'axios';
 
 class Kids extends React.Component {
 
-  componentWillMount() {
+  componentDidMount() {
     this.getKids();
+  }
+
+  constructor (props) {
+    super(props);
+    this.state = {
+      kids: [],
+      kid: {},
+      showKidForm: false,
+      showKid: false,
+      error: ''
+    };
   }
 
   toggleKid = () => {
@@ -72,14 +83,14 @@ class Kids extends React.Component {
 
   render() {
     const { kids, kid, getKid, deleteKid, editKid,
-            showKid, showKidForm } = this.props.state;
+            showKid, showKidForm } = this.state;
 
     return(
       <div>
       <Route path="/kid/:id" component={KidProfile}/>
       { showKidForm ?
         <KidForm
-          kid={kid}
+          kid={this.state.kid}
           submitKid={this.submitKid}
         />
           :

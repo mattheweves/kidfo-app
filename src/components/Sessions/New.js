@@ -13,32 +13,13 @@ class New extends React.Component {
        email: this.email.value,
        password: this.password.value,
     };
-      this.signIn(formData);
+       this.props.signIn(formData);
 
     };
 
-  signIn = (data) => {
-    axios.post(urlFor(`sessions`), data)
-    .then((res) => {
-      this.setState( { user: res.data });
-      localStorage.setItem('token', this.state.user.authentication_token);
-      localStorage.setItem('email', this.state.user.email);
-      localStorage.setItem('signedIn', true);
-    })
-    .catch((err) => {
-       const { errors } = err.response.status;
-        if (errors === 401) {
-          this.setState({ error: "Missing Name!" });
-        } else  {
-          this.setState({ error: "General Submission Error: Check your Data!"});
-        }
-    });
-  }
-
-
   render() {
 
-    const { user, signedIn } = this.state;
+    const { signedIn, signIn } = this.props;
 
     return (
         <div className="row">

@@ -17,7 +17,8 @@ class Nav extends React.Component {
           {
             signedIn === "true" ?
             <div>
-              <Link to="/kids">Kids</Link>
+            <li><Link to="/kids">Kids</Link></li>
+            <li><Link to="/families">Care</Link></li>
               <a className="waves-effect waves-light btn" onClick={() => signOut()}>Sign Out</a>
             </div>
             :
