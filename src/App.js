@@ -4,6 +4,7 @@ import './App.css';
 import Nav from './components/Nav';
 import User from './components/containers/User';
 import Kids from './components/containers/Kids';
+import SignUp from './components/pages/SignUp';
 import Families from './components/containers/Families';
 import FamilyProfile from './components/FamilyProfile';
 import EditFamily from './components/EditFamily';
@@ -115,7 +116,10 @@ class App extends Component {
                   <User />
                 </div>
                 :
-                <Route exact path="/login" render={props => <New user={user} signIn={this.signIn} signedIn={signedIn} />  } />
+                <div>
+                  <Route exact path="/login" render={props => <New user={user} signIn={this.signIn} signedIn={signedIn} />  } />
+                  <Route exact path="/sign_up" render={props => <SignUp user={user} />  } />
+                </div>
             }
             </div>
 

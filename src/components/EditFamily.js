@@ -3,6 +3,10 @@ import { BrowserRouter as Router, Route, Link, BrowserHistory, Redirect } from '
 
 class EditFamily extends React.Component {
 
+    state = {
+      redirectToReferrer: false
+    }
+
     onSubmit(e) {
 
       const formData = {
@@ -18,15 +22,15 @@ class EditFamily extends React.Component {
          physicianphone: this.physicianphone.value
       };
         this.props.editFamily(formData, this.props.family.id);
-
     };
 
     render() {
 
-    const { family, submitFamily } = this.props;
+    const { family, submitFamily, editFamilyForm } = this.props;
+    const { redirectToReferrer } = this.state;
 
+    if (editFamilyForm) {
     return(
-
       <div className="row">
           <form
             className="col s12"
@@ -122,8 +126,12 @@ class EditFamily extends React.Component {
           <input className="waves-effect waves-light btn" type="submit" value="Submit" />
           </form>
       </div>
+    )
+   }
+    return (
+      <Redirect from={EditFamily} to='/myfamily'/>
     );
-    }
+  }
 }
 
 export default EditFamily;

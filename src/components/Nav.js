@@ -24,7 +24,10 @@ class Nav extends React.Component {
             <li><a onClick={() => signOut()}>Sign Out</a></li>
             </div>
             :
-            <Link to="/login">Login</Link>
+            <div>
+              <li><Link to="/login">Sign In</Link></li>
+              <li><Link to="/sign_up">Sign Up</Link></li>
+            </div>
           }
           </ul>
         </div>

@@ -23,14 +23,15 @@ class User extends React.Component {
 
   editMyFamily = () => {
       this.getMyFamily(localStorage.getItem('family'));
+      this.setState({ editFamilyForm: true});
   }
 
   editFamily = (data, id) => {
     axios.patch(urlFor(`family/${id}`), data, userAuth())
-    .then((res) => this.setState( { family: res.data, editFamily: false }) )
+    .then((res) => this.setState( { family: res.data, editFamilyForm: false }) )
     .catch((err) => console.log(err.response) );
     this.editMyFamily();
-    
+
   }
 
   getMyFamily = (id) => {
@@ -40,12 +41,12 @@ class User extends React.Component {
   }
 
   render() {
-    const { family, editFamily } = this.state;
+    const { family, editFamily, editFamilyForm } = this.state;
 
       return(
         <div>
-          <Route exact path="/myfamily" render={props => <MyFamilyDisplay family={family} />  }   />
-          <Route exact path="/myfamily/edit" render={props => <EditFamily family={family} editFamily={this.editFamily} />  }   />
+          <Route exact path="/myfamily" render={props => <MyFamilyDisplay family={family} editMyFamily={this.editMyFamily} />  }   />
+          <Route exact path="/myfamily/edit" render={props => <EditFamily family={family} editFamilyForm={editFamilyForm} editFamily={this.editFamily} />  }   />
         </div>
       );
 

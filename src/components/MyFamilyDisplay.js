@@ -5,7 +5,7 @@ import FamilyProfile from './FamilyProfile';
 class MyFamilyDisplay extends React.Component {
 
   render() {
-    const { family, getFamily, editFamily } = this.props;
+    const { family, getFamily, editMyFamily } = this.props;
 
     return (
       <div className="col s12 m8 offset-m2 l6 offset-l3">
@@ -19,7 +19,7 @@ class MyFamilyDisplay extends React.Component {
               <br />
             </div>
             <div className="col s4">
-              <span className="right-align">
+              <span className="right-align" onClick={() => editMyFamily()}>
                 <Link to="/myfamily/edit"><i className="material-icons">mode_edit</i></Link>
               </span>
             </div>
