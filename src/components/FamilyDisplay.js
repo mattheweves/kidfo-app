@@ -1,4 +1,6 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Link, BrowserHistory } from 'react-router-dom';
+import FamilyProfile from './FamilyProfile';
 
 class FamilyDisplay extends React.Component {
 
@@ -13,12 +15,12 @@ class FamilyDisplay extends React.Component {
               <img src="img/whitney.png" alt="" className="circle responsive-img"></img>
             </div>
             <div className="col s6 left-align">
+
               <span className="black-text left-align" onClick={() => getFamily(family.id)}>
                 <h5>
-                { family.name }
+              Fam Name: { family.name }
                 </h5><br />
                 Parents: { family.parents[0].first_name } { family.parents[0].last_name }< br/>
-                         { family.parents[1].first_name } { family.parents[1].last_name }< br/>
 
                 <p>{family.kids.length} Kids</p>
               </span>

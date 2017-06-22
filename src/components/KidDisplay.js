@@ -1,8 +1,13 @@
 import React from 'react';
+import KidProfile from '../components/KidProfile';
+
+import { BrowserRouter as Router, Route, Link, BrowserHistory, Redirect } from 'react-router-dom';
+
 
 class KidDisplay extends React.Component {
 
   render() {
+
     const { kid, getKid, deleteKid, editKid } = this.props;
 
     return (

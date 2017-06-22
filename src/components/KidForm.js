@@ -4,7 +4,6 @@ class KidForm extends React.Component {
 
     onSubmit(e) {
 
-      e.preventDefault();
       const formData = {
          name: this.name.value,
          gender: this.gender.value,

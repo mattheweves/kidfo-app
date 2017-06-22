@@ -47,6 +47,57 @@
   to { transform: rotate(360deg); }
 }
 
+/* Burger */
+
+/* Position and sizing of burger button */
+.bm-burger-button {
+  position: fixed;
+  width: 36px;
+  height: 30px;
+  left: 36px;
+  top: 16px;
+}
+
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  background: #fff;
+}
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 20px;
+  width: 24px;
+}
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: #bdc3c7;
+}
+
+/* General sidebar styles */
+.bm-menu {
+  background: #373a47;
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+}
+
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+  fill: #373a47;
+}
+
+/* Wrapper for item list */
+.bm-item-list {
+  color: #b8b7ad;
+  padding: 0.8em;
+}
+
+/* Styling of overlay */
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+
 /* nav.css */
 @import url('https://fonts.googleapis.com/css?family=Playfair+Display:900');
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
@@ -186,11 +237,11 @@
 }
 
 .materialize-red.lighten-2 {
-  background-color: #ee6e73 !important;
+  background-color: #ffcc99 !important;
 }
 
 .materialize-red-text.text-lighten-2 {
-  color: #ee6e73 !important;
+  color: #ffcc99 !important;
 }
 
 .materialize-red.lighten-1 {
@@ -2767,7 +2818,7 @@ a {
 blockquote {
   margin: 20px 0;
   padding-left: 1.5rem;
-  border-left: 5px solid #ee6e73;
+  border-left: 5px solid #ffcc99;
 }
 
 i {
@@ -2827,7 +2878,7 @@ video.responsive-video {
 }
 
 .pagination li.active {
-  background-color: #ee6e73;
+  background-color: #ffcc99;
 }
 
 .pagination li.disabled a {
@@ -3013,7 +3064,7 @@ ul.staggered-list li {
 
 .page-footer {
   padding-top: 20px;
-  background-color: #ee6e73;
+  background-color: #ffcc99;
 }
 
 .page-footer .footer-copyright {
@@ -4333,7 +4384,7 @@ nav ul a span.badge {
 
 nav {
   color: #fff;
-  background-color: #ee6e73;
+  background-color: #ffcc99;
   width: 100%;
   height: 56px;
   line-height: 56px;
@@ -4391,7 +4442,7 @@ nav .button-collapse i {
 }
 
 nav .brand-logo {
-  position: absolute;
+  left: 20%;
   color: #fff;
   display: inline-block;
   font-size: 2.1rem;
@@ -4407,17 +4458,19 @@ nav .brand-logo.center {
 
 @media only screen and (max-width: 992px) {
   nav .brand-logo {
-    left: 50%;
+    left: 20%;
     -webkit-transform: translateX(-50%);
             transform: translateX(-50%);
   }
   nav .brand-logo.left, nav .brand-logo.right {
     padding: 0;
+    left: 20%;
     -webkit-transform: none;
             transform: none;
   }
   nav .brand-logo.left {
     left: 0.5rem;
+    left: 20%;
   }
   nav .brand-logo.right {
     right: 0.5rem;
@@ -5144,7 +5197,7 @@ small {
 
 .tabs .tab a:hover, .tabs .tab a.active {
   background-color: transparent;
-  color: #ee6e73;
+  color: #ffcc99;
 }
 
 .tabs .tab.disabled a,
@@ -7235,13 +7288,13 @@ input[type=range]:focus::-ms-fill-upper {
 .table-of-contents a:hover {
   color: #a8a8a8;
   padding-left: 19px;
-  border-left: 1px solid #ee6e73;
+  border-left: 1px solid #ffcc99;
 }
 
 .table-of-contents a.active {
   font-weight: 500;
   padding-left: 18px;
-  border-left: 2px solid #ee6e73;
+  border-left: 2px solid #ffcc99;
 }
 
 .side-nav {
@@ -7439,7 +7492,7 @@ input[type=range]:focus::-ms-fill-upper {
 
 .side-nav .collapsible-body > ul:not(.collapsible) > li.active,
 .side-nav.fixed .collapsible-body > ul:not(.collapsible) > li.active {
-  background-color: #ee6e73;
+  background-color: #ffcc99;
 }
 
 .side-nav .collapsible-body > ul:not(.collapsible) > li.active a,
@@ -8201,7 +8254,7 @@ input[type=range]:focus::-ms-fill-upper {
   position: absolute;
   font-size: 1rem;
   border-radius: 50%;
-  background-color: #ee6e73;
+  background-color: #ffcc99;
   box-shadow: 0 20px 20px 0 rgba(0, 0, 0, 0.14), 0 10px 50px 0 rgba(0, 0, 0, 0.12), 0 30px 10px -20px rgba(0, 0, 0, 0.2);
   width: 100%;
   height: 100%;

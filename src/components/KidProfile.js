@@ -1,8 +1,7 @@
 import React from 'react';
 
 class KidProfile extends React.Component {
-
-
+    
     render () {
     const { kid, family } = this.props;
 

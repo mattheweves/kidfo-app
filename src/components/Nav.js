@@ -1,25 +1,30 @@
 import React from 'react';
+import SideMenu from './SideMenu';
+import { BrowserRouter as Router, Route, Link, BrowserHistory } from 'react-router-dom';
+
 
 class Nav extends React.Component {
 
   render() {
 
-    const { toggleKid, showKid, showKidForm, goHome, signOut, signedIn } = this.props;
+    const { signOut, signedIn } = this.props;
     return (
 
       <nav>
         <div className="nav-wrapper">
-          <a href="#" data-activates="slide-out" className="button-collapse" onClick={() => goHome() }><i className="material-icons">menu</i></a>
-          <a href="#" className="brand-logo center">KIDFO</a>
+          <SideMenu signedIn={signedIn}/>
+          <a href="#" className="brand-logo left">KIDFO</a>
           <ul id="nav-mobile" className="right hide-on-sm-and-down">
           {
             signedIn === "true" ?
             <div>
-              <li><a className="waves-effect waves-light btn" onClick={() => toggleKid()}>+ Kid</a></li>
-              <li><a className="waves-effect waves-light btn" onClick={() => signOut()}>Sign Out</a></li>
+            <li><Link to="/kids">Kids</Link></li>
+            <li><Link to="/families">Care</Link></li>
+            <li><Link to="/myfamily">My Family</Link></li>
+            <li><a onClick={() => signOut()}>Sign Out</a></li>
             </div>
             :
-            ""
+            <Link to="/login">Login</Link>
           }
           </ul>
         </div>
