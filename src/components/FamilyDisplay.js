@@ -21,7 +21,6 @@ class FamilyDisplay extends React.Component {
               Fam Name: { family.name }
                 </h5><br />
                 Parents: { family.parents[0].first_name } { family.parents[0].last_name }< br/>
-                         { family.parents[1].first_name } { family.parents[1].last_name }< br/>
 
                 <p>{family.kids.length} Kids</p>
               </span>

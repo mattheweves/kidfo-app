@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link, BrowserHistory } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Redirect, withRouter, BrowserHistory } from 'react-router-dom';
 import KidDisplay from '../KidDisplay';
 import KidForm from '../../components/KidForm';
 import KidProfile from '../../components/KidProfile';
@@ -10,18 +10,17 @@ import axios from 'axios';
 
 class Kids extends React.Component {
 
-  componentDidMount() {
+  componentWillMount() {
     this.getKids();
   }
 
-  constructor (props) {
-    super(props);
+  constructor () {
+    super();
     this.state = {
       kids: [],
       kid: {},
       showKidForm: false,
-      showKid: false,
-      error: ''
+      showKid: false
     };
   }
 
@@ -34,21 +33,23 @@ class Kids extends React.Component {
 
   getKids = () => {
     axios.get(urlFor('kids'),userAuth())
-    .then((res) => this.setState({ kids: res.data }))
+    .then((res) => this.setState( { kids: res.data } ))
     .catch((err) => console.log(err.response) );
   }
 
   getKid = (id) => {
     axios.get(urlFor(`kids/${id}`),userAuth())
-    .then((res) => this.setState( { kid: res.data, showKid: true }) )
+    .then((res) => {
+      this.setState( { kid: res.data, showKid: true });
+    }
+     )
     .catch((err) => console.log(err.response.data) );
   }
 
   editKid = (kid) => {
-      console.log(kid.name);
       this.setState({
-        kid: kid,
-        showKidForm: ! this.state.showKidForm
+        showKidForm: ! this.state.showKidForm,
+        kid: kid
       });
   }
 
@@ -63,6 +64,7 @@ class Kids extends React.Component {
           this.setState({ error: "Error: check your Data!"});
         }
     });
+    this.getKids();
   }
 
   deleteKid = (id) => {
@@ -82,21 +84,21 @@ class Kids extends React.Component {
   }
 
   render() {
-    const { kids, kid, getKid, deleteKid, editKid,
-            showKid, showKidForm } = this.state;
+    const { kids, kid, getKids, getKid, editKid, showKidForm, showKid, getFamily } = this.state;
+
 
     return(
       <div>
       <Route path="/kid/:id" component={KidProfile}/>
       { showKidForm ?
         <KidForm
-          kid={this.state.kid}
+          kid={kid}
           submitKid={this.submitKid}
         />
           :
         showKid ?
         <KidProfile
-          kid={this.state.kid}
+          kid={kid}
           getFamily={this.getFamily}
         />
           :
@@ -114,7 +116,8 @@ class Kids extends React.Component {
             );
           })
       }
-      <a className="waves-effect waves-light btn" onClick={() => this.toggleKid()}>+ Kid</a>
+      <a className="waves-effect waves-light btn" onClick={() => this.toggleKid()}>+ Kid</a><br />
+
       </div>
     );
   }

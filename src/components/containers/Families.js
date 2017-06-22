@@ -13,29 +13,16 @@ class Families extends React.Component {
     this.getFamilies();
   }
 
-  constructor (props) {
-    super(props);
+  constructor () {
+    super();
     this.state = {
       showFamily: false,
-      editFamilyForm: false,
       families: [],
       family: {}
     };
   }
 
-  editMyFamily = () => {
-      this.setState({
-        family: this.props.user.family_id,
-        editFamilyForm: ! this.state.editFamilyForm
-      });
-  }
 
-  editFamily = (data, id) => {
-    axios.patch(urlFor(`family/${id}`), data, userAuth())
-    .then((res) => this.setState( { family: res.data, editFamily: false }) )
-    .catch((err) => console.log(err.response) );
-    this.editMyFamily();
-  }
 
   getFamilies = () => {
     axios.get(urlFor('families'),userAuth())
@@ -50,19 +37,13 @@ class Families extends React.Component {
   }
 
   render() {
-    const { families, family, showFamily, editFamilyForm } = this.state;
+    const { families, family, showFamily } = this.state;
 
     return(
       <div>
       { showFamily ?
         <FamilyProfile
           family={family}
-        />
-        :
-        editFamilyForm ?
-        <EditFamily
-         family={family}
-         editFamily={this.editFamily}
         />
         :
         this.state.families.map((family, index) => {
@@ -77,9 +58,6 @@ class Families extends React.Component {
            );
          })
       }
-      <Link to={`/family/edit/`} >
-         <a className="waves-effect waves-light btn" onClick={() => this.editMyFamily()}>Edit My Family</a>
-      </Link>
       </div>
     );
   }

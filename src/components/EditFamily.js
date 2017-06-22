@@ -5,7 +5,6 @@ class EditFamily extends React.Component {
 
     onSubmit(e) {
 
-      e.preventDefault();
       const formData = {
          name: this.name.value,
          emerg_contact_1: this.emerg_contact_1.value,

@@ -14,14 +14,11 @@ class Invitation extends React.Component {
 
 
   render() {
-    
+
     const { sendInvite } = this.props;
 
     return(
          <div>
-             <a className="waves-effect waves-light btn" href="#modalspouse">Invite Spouse</a>
-             <a className="waves-effect waves-light btn" href="#modalsitter">Invite Sitter</a>
-
              <div id="modalspouse" className="modal bottom-sheet">
                <div className="modal-content">
                  <h4>Invite Spouse</h4>
