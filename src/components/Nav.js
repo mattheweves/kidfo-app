@@ -9,7 +9,7 @@ class Nav extends React.Component {
 
     const { signOut, signedIn } = this.props;
     return (
-
+      <div>
       <nav>
         <div className="nav-wrapper">
           <SideMenu signedIn={signedIn}/>
@@ -18,10 +18,11 @@ class Nav extends React.Component {
           {
             signedIn === "true" ?
             <div>
-            <li><Link to="/kids">Kids</Link></li>
-            <li><Link to="/families">Care</Link></li>
-            <li><Link to="/myfamily">My Family</Link></li>
-            <li><a onClick={() => signOut()}>Sign Out</a></li>
+              <li><Link to="/home">Home</Link></li>
+              <li><Link to="/kids">Kids</Link></li>
+              <li><Link to="/care">Care</Link></li>
+              <li><Link to="/myfamily">My Family</Link></li>
+              <li><a onClick={() => signOut()}>Sign Out</a></li>
             </div>
             :
             <div>
@@ -32,6 +33,8 @@ class Nav extends React.Component {
           </ul>
         </div>
      </nav>
+     <br /><br />
+     </div>
     );
   }
 

@@ -22,8 +22,6 @@ class Families extends React.Component {
     };
   }
 
-
-
   getFamilies = () => {
     axios.get(urlFor('families'),userAuth())
     .then((res) => this.setState({ families: res.data }))

@@ -2,20 +2,19 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Redirect, Route, History, Link, BrowserHistory } from 'react-router-dom';
 import './App.css';
 import Nav from './components/Nav';
+import Care from './components/Care';
 import User from './components/containers/User';
+import Home from './components/containers/Home';
 import Kids from './components/containers/Kids';
 import SignUp from './components/pages/SignUp';
-import Families from './components/containers/Families';
 import FamilyProfile from './components/FamilyProfile';
 import EditFamily from './components/EditFamily';
 import urlFor from './helpers/urlFor';
 import userAuth from './helpers/userAuth';
 import axios from 'axios';
 import New from './components/Sessions/New';
-import Invites from './components/containers/Invites';
 import Invitation from './components/Invitation';
 import Flash from './components/Flash';
-
 
 class App extends Component {
   constructor (props) {
@@ -83,11 +82,8 @@ class App extends Component {
 
   render() {
 
-    const { goHome,
-            kids, kid,
-            families, family,
+    const {
             user, signIn, signOut, signedIn,
-            invites,
             error
            } = this.state;
 
@@ -103,13 +99,9 @@ class App extends Component {
             { error && <Flash error={error} resetError={this.resetError} /> }
             { signedIn === "true" ?
                 <div>
-                <Route path="/kids" render={props => <Kids kids={kids} kid={kid} handler={this.handler} />  }   />
-                <Route path="/families" component={Families} families={families}/>
-                  <Invites
-                    getInvites={this.getInvites}
-                    invites={invites}
-                    responseInvite={this.responseInvite}
-                  />
+                <Route path="/kids" component={Kids}/>
+                <Route path="/care" component={Care}/>
+                <Route path="/home" component={Home}/>
                   <Invitation
                     sendInvite={this.sendInvite}
                   />
