@@ -17,7 +17,7 @@ class FamilyDisplay extends React.Component {
             <div className="col s6 left-align">
 
               <span className="black-text left-align" onClick={() => getFamily(family.id)}>
-                <h5>
+              <h5>
               Fam Name: { family.name }
                 </h5><br />
                 Parents: { family.parents[0].first_name } { family.parents[0].last_name }< br/>

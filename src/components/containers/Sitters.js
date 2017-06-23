@@ -28,7 +28,7 @@ class Sitters extends React.Component {
   }
 
   getSitter = (id) => {
-    axios.get(urlFor(`sitter/${id}`),userAuth())
+    axios.get(urlFor(`sitters/${id}`),userAuth())
     .then((res) => this.setState( { sitter: res.data, showSitter: true }) )
     .catch((err) => console.log(err.response.data) );
   }
