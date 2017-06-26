@@ -10,10 +10,6 @@ class Session extends React.Component {
             onSubmit={(e) => this.onSubmit(e)}
            >
             <div className="row">
-             <br />
-              <img className="responsive-img circle col s4 offset-s4" src="http://i.pravatar.cc/150?img=46"></img>
-            </div>
-            <div className="row">
               <div className="input-field col s6">
                   <input
                     id="first_name" type="text" className="validate"

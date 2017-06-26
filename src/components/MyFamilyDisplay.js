@@ -11,9 +11,6 @@ class MyFamilyDisplay extends React.Component {
       <div className="col s12 m8 offset-m2 l6 offset-l3">
         <div className="card-panel grey lighten-5 z-depth-1">
           <div className="row valign-wrapper">
-            <div className="col s2">
-              <img src="img/whitney.png" alt="" className="circle responsive-img"></img>
-            </div>
             <div className="col s6 left-align">
               <div><h5>Fam Name: { family.name }</h5></div>
               <br />
