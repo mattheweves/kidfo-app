@@ -22,22 +22,15 @@ class SignUp extends React.Component {
       redirectToReferrer: false
     }
 
-  signUp = (data) => {
-    axios.post(urlFor(`users`), data)
+  signUp = (formdata) => {
+    axios.post(urlFor(`users`), formdata)
     .then((res) => {
       this.props.setState( { user: res.data, signedIn: true });
       localStorage.setItem('token', this.props.user.authentication_token);
       localStorage.setItem('email', this.props.user.email);
       localStorage.setItem('signedIn', true);
     })
-    .catch((err) => {
-       const { errors } = err.response.status;
-        if (errors === 401) {
-          this.setState({ error: "Missing Data!" });
-        } else  {
-          this.setState({ error: "General Submission Error: Check your Data!"});
-        }
-    });
+    .catch((err) => console.log(err.response) );
   }
 
   render() {
@@ -55,10 +48,6 @@ class SignUp extends React.Component {
             className="col s12"
             onSubmit={(e) => this.onSubmit(e)}
            >
-            <div className="row">
-             <br />
-              <img className="responsive-img circle col s4 offset-s4" src="http://i.pravatar.cc/150?img=46"></img>
-            </div>
             <div className="row">
               <div className="input-field col s3">
                   <input
