@@ -1,4 +1,5 @@
 import React from 'react';
+import KidImage from './KidImage';
 
 class KidForm extends React.Component {
 
@@ -18,20 +19,22 @@ class KidForm extends React.Component {
 
     };
 
+
     render() {
 
     const { kid, submitKid } = this.props;
     console.log(kid.name);
     return(
-
+      <div>
+      <KidImage
+        kid={kid}
+        submitKid={submitKid}
+      />
       <div className="row">
           <form
             className="col s12"
             onSubmit={(e) => this.onSubmit(e)}
           >
-            <div className="row">
-             <br />
-            </div>
             <div className="row">
             <div className="input-field col s6 active">
                   <input
@@ -111,6 +114,7 @@ class KidForm extends React.Component {
             </div>
           <input className="waves-effect waves-light btn" type="submit" value="Submit" />
           </form>
+          </div>
       </div>
     );
     }

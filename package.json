@@ -11,6 +11,8 @@
     "react-datepicker": "^0.46.0",
     "react-devise": "^0.0.8",
     "react-dom": "^15.5.4",
+    "react-dropzone": "^3.13.3",
+    "react-file-base64": "git+https://github.com/lrojas94/react-file-base64.git",
     "react-materialize": "^1.0.1",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
