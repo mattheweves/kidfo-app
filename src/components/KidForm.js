@@ -1,5 +1,5 @@
 import React from 'react';
-import KidImage from './KidImage';
+import ImageUpload from './ImageUpload';
 
 class KidForm extends React.Component {
 
@@ -23,10 +23,11 @@ class KidForm extends React.Component {
     render() {
 
     const { kid, submitKid } = this.props;
-    console.log(kid.name);
+
     return(
       <div>
-      <KidImage
+      <ImageUpload
+        formtype="kid"
         kid={kid}
         submitKid={submitKid}
       />

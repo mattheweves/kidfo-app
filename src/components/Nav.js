@@ -8,6 +8,7 @@ class Nav extends React.Component {
   render() {
 
     const { signOut, signedIn } = this.props;
+    const haveFamily = localStorage.getItem('family') > 0;
     return (
       <div>
       <nav>
@@ -21,7 +22,8 @@ class Nav extends React.Component {
               <li><Link to="/home">Home</Link></li>
               <li><Link to="/kids">Kids</Link></li>
               <li><Link to="/care">Care</Link></li>
-              <li><Link to="/myfamily">My Family</Link></li>
+              { haveFamily ?
+              <li><Link to="/myfamily">My Family</Link></li> : "" }
               <li><a onClick={() => signOut()}>Sign Out</a></li>
             </div>
             :

@@ -5,19 +5,23 @@ import FamilyProfile from './FamilyProfile';
 class MyFamilyDisplay extends React.Component {
 
   render() {
+
     const { family, getFamily, editMyFamily } = this.props;
 
     return (
       <div className="col s12 m8 offset-m2 l6 offset-l3">
         <div className="card-panel grey lighten-5 z-depth-1">
+          <div className="col s8 offset-s2">
+            <img src={family.image.url} alt="" className="responsive-img"></img>
+          </div>
           <div className="row valign-wrapper">
             <div className="col s6 left-align">
-              <div><h5>Fam Name: { family.name }</h5></div>
+              <div><h5>The { family.name } Family</h5></div>
               <br />
             </div>
             <div className="col s4">
               <span className="right-align" onClick={() => editMyFamily()}>
-                <Link to="/myfamily/edit"><i className="material-icons">mode_edit</i></Link>
+                <Link to="/myfamily/edit"><i className="material-icons">mode_edit</i>Edit My Family</Link>
               </span>
             </div>
           </div>

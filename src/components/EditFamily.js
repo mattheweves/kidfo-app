@@ -1,11 +1,17 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link, BrowserHistory, Redirect } from 'react-router-dom';
+import ImageUpload from './ImageUpload';
 
 class EditFamily extends React.Component {
 
     state = {
       redirectToReferrer: false
     }
+
+    componentDidMount() {
+      this.props.getMyFamily(localStorage.getItem('family'));
+    }
+
 
     onSubmit(e) {
 
@@ -26,11 +32,20 @@ class EditFamily extends React.Component {
 
     render() {
 
-    const { family, submitFamily, editFamilyForm } = this.props;
+    const { family, editFamily, editFamilyForm } = this.props;
     const { redirectToReferrer } = this.state;
 
     if (editFamilyForm) {
     return(
+      <div>
+      <ImageUpload
+        formtype="family"
+        family={family}
+        editFamily={editFamily}
+      />
+      <div className="col s6 offset-s2">
+        <img src={family.image.url} alt="" className="responsive-img"></img>
+      </div>
       <div className="row">
           <form
             className="col s12"
@@ -122,6 +137,7 @@ class EditFamily extends React.Component {
           <input className="waves-effect waves-light btn" type="submit" value="Submit" />
           </form>
       </div>
+    </div>
     )
    }
     return (

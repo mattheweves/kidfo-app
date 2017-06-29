@@ -15,7 +15,7 @@ class User extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      family: {},
+      family: localStorage.getItem('family'),
       editFamilyForm: false,
       showFamily: false
     };
@@ -46,7 +46,7 @@ class User extends React.Component {
       return(
         <div>
           <Route exact path="/myfamily" render={props => <MyFamilyDisplay family={family} editMyFamily={this.editMyFamily} />  }   />
-          <Route exact path="/myfamily/edit" render={props => <EditFamily family={family} editFamilyForm={editFamilyForm} editFamily={this.editFamily} />  }   />
+          <Route exact path="/myfamily/edit" render={props => <EditFamily family={family} editFamilyForm={editFamilyForm} editFamily={this.editFamily} getMyFamily={this.getMyFamily} />  }   />
         </div>
       );
 

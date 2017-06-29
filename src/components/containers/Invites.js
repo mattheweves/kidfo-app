@@ -5,6 +5,7 @@ import userAuth from '../../helpers/userAuth';
 import axios from 'axios';
 
 class Invites extends React.Component {
+
   componentWillMount() {
     this.getInvites();
   }

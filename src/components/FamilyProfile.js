@@ -3,6 +3,7 @@ import Kids from './containers/Kids';
 
 class FamilyProfile extends React.Component {
 
+    
 
     render () {
     const { family } = this.props;
@@ -13,6 +14,9 @@ class FamilyProfile extends React.Component {
       <div>
         <div className="row">
           <div className="col s12" >
+            <div className="col s2">
+              <img src={family.image.url} alt="" className="circle responsive-img"></img>
+            </div>
             <div className="col s6 offset-s3">
                 <h3>{family.name}</h3>
                 { showParents === "true" ?
