@@ -1,21 +1,39 @@
 import React from 'react';
+import urlFor from '../helpers/urlFor';
+import userAuth from '../helpers/userAuth';
+import axios from 'axios';
 
 
 class Invitation extends React.Component {
 
   onSubmit(e, inviteType) {
 
+    var emailval = "";
+
+    { inviteType == "for_spouse" ? emailval=this.emailspouse.value : emailval=this.emailsitter.value};
+
     const formData = {
-       email: this.email.value,
+       email: emailval,
        invite_kind: inviteType
     };
-      this.props.sendInvite(formData);
+      this.sendInvite(formData);
   };
+
+  sendInvite = (data) => {
+    axios.post(urlFor('invites'), data, userAuth())
+    .then((res) => console.log(res.data) )
+    .catch((err) => {
+       const { errors } = err.response.data;
+        if (errors.email) {
+          this.setState({ error: "Email Cannot Be Blank!" });
+        } else  {
+          this.setState({ error: "Unknown Error"});
+        }
+    });
+  }
 
 
   render() {
-
-    const { sendInvite } = this.props;
 
     return(
          <div>
@@ -27,8 +45,8 @@ class Invitation extends React.Component {
                  >
                      <div className="input-field col s6">
                            <input
-                             id="email" placeholder="email" type="text" className="validate"
-                             ref={(input) => this.email = input}
+                             id="emailspouse" placeholder="email" type="text" className="validate"
+                             ref={(input) => this.emailspouse = input}
                            />
                            <label for="email">Email</label>
                      </div>
@@ -47,8 +65,8 @@ class Invitation extends React.Component {
                  >
                      <div className="input-field col s6">
                            <input
-                             id="email" placeholder="email" type="text" className="validate"
-                             ref={(input) => this.email = input}
+                             id="emailsitter" placeholder="email" type="text" className="validate"
+                             ref={(input) => this.emailsitter = input}
                            />
                            <label for="email">Email</label>
                      </div>

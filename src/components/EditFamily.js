@@ -3,11 +3,7 @@ import { BrowserRouter as Router, Route, Link, BrowserHistory, Redirect } from '
 import ImageUpload from './ImageUpload';
 
 class EditFamily extends React.Component {
-
-    state = {
-      redirectToReferrer: false
-    }
-
+  
     componentDidMount() {
       this.props.getMyFamily(localStorage.getItem('family'));
     }
@@ -33,7 +29,6 @@ class EditFamily extends React.Component {
     render() {
 
     const { family, editFamily, editFamilyForm } = this.props;
-    const { redirectToReferrer } = this.state;
 
     if (editFamilyForm) {
     return(

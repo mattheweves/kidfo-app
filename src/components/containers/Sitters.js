@@ -33,30 +33,38 @@ class Sitters extends React.Component {
     .catch((err) => console.log(err.response.data) );
   }
 
+
   render() {
     const { sitters, sitter, showSitter } = this.state;
+    let hasFamily = localStorage.getItem('family') > 0;
 
-    return(
-      <div>
-      { showSitter ?
-        <SitterProfile
-          sitter={sitter}
-        />
-        :
-        this.state.sitters.map((sitter, index) => {
-           return(
-             <SitterDisplay
-               key={index}
-               index={index}
-               sitter={sitter}
-               getSitter={this.getSitter}
-               showSitter={this.showSitter}
-             />
-           );
-         })
-      }
-      </div>
-    );
+      if(hasFamily){
+      return(
+        <div><div className="row"><h5 className="left">My Sitters</h5></div>
+              { showSitter ?
+                <SitterProfile
+                  sitter={sitter}
+                />
+                :
+                sitters.length > 0 ?
+                   sitters.map((sitter, index) => {
+                   return(
+                     <SitterDisplay
+                       key={index}
+                       index={index}
+                       sitter={sitter}
+                       getSitter={this.getSitter}
+                       showSitter={this.showSitter}
+                     />
+                   );
+                 })
+                : ""
+              }
+          </div>
+      );
+    } else
+      { return null; }
+
   }
 }
 

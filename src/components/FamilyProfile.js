@@ -1,21 +1,31 @@
 import React from 'react';
-import Kids from './containers/Kids';
+import KidDisplay from './KidDisplay';
+
 
 class FamilyProfile extends React.Component {
 
-    
+
 
     render () {
     const { family } = this.props;
     const showParents = "true";
+    var kids = family.kids.map((kid, index) => {
+                     return(
+                       <KidDisplay
+                         key={index}
+                         index={index}
+                         kid={kid}
+                       />
+                     );
+                   });
 
 
     return (
       <div>
         <div className="row">
           <div className="col s12" >
-            <div className="col s2">
-              <img src={family.image.url} alt="" className="circle responsive-img"></img>
+            <div className="col 6">
+              <img src={family.image.url} alt="" className="responsive-img"></img>
             </div>
             <div className="col s6 offset-s3">
                 <h3>{family.name}</h3>
@@ -32,7 +42,7 @@ class FamilyProfile extends React.Component {
             </div>
           </div>
         </div>
-
+        { kids }
       </div>
     );
 

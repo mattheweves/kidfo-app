@@ -2,9 +2,12 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Link, BrowserHistory } from 'react-router-dom';
 import Invites from './Invites';
 
-
-
 class Home extends React.Component {
+
+
+  componentWillMount() {
+    this.getKids();
+  }
 
   constructor (props) {
     super(props);

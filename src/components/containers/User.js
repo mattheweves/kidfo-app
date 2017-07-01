@@ -1,6 +1,9 @@
 import React from 'react';
 import MyFamilyDisplay from '../MyFamilyDisplay';
 import EditFamily from '../EditFamily';
+import Invites from './Invites';
+import UserProfile from '../UserProfile';
+import EditUserProfile from '../EditUserProfile';
 import urlFor from '../../helpers/urlFor';
 import userAuth from '../../helpers/userAuth';
 import axios from 'axios';
@@ -8,17 +11,26 @@ import { BrowserRouter as Router, Route, Link, BrowserHistory } from 'react-rout
 
 
 class User extends React.Component {
+
   componentDidMount() {
-    this.getMyFamily(localStorage.getItem('family'));
+    this.getMyAccount();
   }
 
   constructor (props) {
     super(props);
     this.state = {
-      family: localStorage.getItem('family'),
+      user: {},
+      invites: [],
+      family: {},
       editFamilyForm: false,
       showFamily: false
     };
+  }
+
+  getMyAccount = () => {
+    axios.get(urlFor('accounts'),userAuth())
+    .then((res) => this.setState( { user: res.data }) )
+    .catch((err) => console.log(err.response.data) );
   }
 
   editMyFamily = () => {
@@ -41,11 +53,13 @@ class User extends React.Component {
   }
 
   render() {
-    const { family, editFamily, editFamilyForm } = this.state;
-
+    const { user, family, editFamily, editFamilyForm } = this.state;
       return(
         <div>
-          <Route exact path="/myfamily" render={props => <MyFamilyDisplay family={family} editMyFamily={this.editMyFamily} />  }   />
+          <Invites />
+          <Route exact path="/userprofile" render={props => <UserProfile user={user}/> } />
+          <Route exact path ="/userprofile/edit" render={props => <EditUserProfile user={user} />  } />
+          <Route exact path="/myfamily" render={props => <MyFamilyDisplay family={family} editMyFamily={this.editMyFamily} getMyFamily={this.getMyFamily} />  }   />
           <Route exact path="/myfamily/edit" render={props => <EditFamily family={family} editFamilyForm={editFamilyForm} editFamily={this.editFamily} getMyFamily={this.getMyFamily} />  }   />
         </div>
       );

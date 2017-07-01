@@ -19,24 +19,7 @@ class New extends React.Component {
       redirectToReferrer: false
     }
 
-  signIn = (data) => {
-    axios.post(urlFor(`sessions`), data)
-    .then((res) => {
-      this.props.setState( { user: res.data, signedIn: true });
-      localStorage.setItem('token', this.props.user.authentication_token);
-      localStorage.setItem('email', this.props.user.email);
-      localStorage.setItem('family', this.props.user.family_id);
-      localStorage.setItem('signedIn', true);
-    })
-    .catch((err) => {
-       const { errors } = err.response.status;
-        if (errors === 401) {
-          this.setState({ error: "Missing Name!" });
-        } else  {
-          this.setState({ error: "General Submission Error: Check your Data!"});
-        }
-    });
-  }
+  
 
   render() {
 

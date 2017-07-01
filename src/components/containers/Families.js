@@ -7,6 +7,7 @@ import FamilyDisplay from '../FamilyDisplay';
 import EditFamily from '../../components/EditFamily';
 import FamilyProfile from '../../components/FamilyProfile';
 
+
 class Families extends React.Component {
 
   componentDidMount() {
@@ -36,29 +37,34 @@ class Families extends React.Component {
 
   render() {
     const { families, family, showFamily } = this.state;
+    let familiesExist = families.length > 0;
 
-    return(
-      <div>
-      { showFamily ?
-        <FamilyProfile
-          family={family}
-        />
-        :
-        this.state.families.map((family, index) => {
-           return(
-             <FamilyDisplay
-               key={index}
-               index={index}
-               family={family}
-               getFamily={this.getFamily}
-               showFamily={this.showFamily}
-             />
-           );
-         })
+     if(familiesExist){
+          return(
+            <div><div className="row"><h5 className="left">Families I Sit For</h5></div>
+              { showFamily ?
+                <FamilyProfile
+                  family={family}
+                />
+                :
+                this.state.families.map((family, index) => {
+                   return(
+                     <FamilyDisplay
+                       key={index}
+                       index={index}
+                       family={family}
+                       getFamily={this.getFamily}
+                       showFamily={this.showFamily}
+                     />
+                   );
+                 })
+              }
+            </div>
+          );
+        }
+      else
+       { return null; }
       }
-      </div>
-    );
-  }
-}
+    }
 
 export default Families;

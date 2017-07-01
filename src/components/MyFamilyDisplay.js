@@ -4,15 +4,20 @@ import FamilyProfile from './FamilyProfile';
 
 class MyFamilyDisplay extends React.Component {
 
+  componentDidMount() {
+    this.props.getMyFamily(localStorage.getItem('family'));
+  }
+
   render() {
 
     const { family, getFamily, editMyFamily } = this.props;
+
 
     return (
       <div className="col s12 m8 offset-m2 l6 offset-l3">
         <div className="card-panel grey lighten-5 z-depth-1">
           <div className="col s8 offset-s2">
-            <img src={family.image.url} alt="" className="responsive-img"></img>
+          <img src={family.image_url} alt="" className="responsive-img"></img>
           </div>
           <div className="row valign-wrapper">
             <div className="col s6 left-align">

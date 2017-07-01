@@ -28,7 +28,6 @@ class App extends Component {
 
   goHome = () => {
     this.setState({
-      invites: [],
       signedIn: localStorage.getItem('signedIn')
     });
   }
@@ -37,6 +36,7 @@ class App extends Component {
     axios.post(urlFor(`sessions`), data)
     .then((res) => {
       this.setState( { user: res.data, signedIn: true });
+      localStorage.setItem('image', this.state.user.image);
       localStorage.setItem('token', this.state.user.authentication_token);
       localStorage.setItem('email', this.state.user.email);
       localStorage.setItem('family', this.state.user.family_id);
@@ -73,13 +73,6 @@ class App extends Component {
     this.setState({ error: ''});
   }
 
-  loginRoute() {
-    if(this.state.signedIn === false) {
-
-    }
-
-  }
-
   render() {
 
     const {
@@ -91,21 +84,22 @@ class App extends Component {
       <Router>
           <div className="App">
             <Nav
+              user={user}
               goHome={this.goHome}
               signOut={this.signOut}
               signedIn={signedIn}
             />
+
             <div className="container">
             { error && <Flash error={error} resetError={this.resetError} /> }
             { signedIn === "true" ?
                 <div>
                 <Route path="/kids" component={Kids}/>
                 <Route path="/care" component={Care}/>
-                <Route path="/home" component={Home}/>
+                <Route path="/home" component={User}/>
                   <Invitation
                     sendInvite={this.sendInvite}
                   />
-                  <User />
                 </div>
                 :
                 <div>
