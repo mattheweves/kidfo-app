@@ -47,7 +47,7 @@ class ImageUpload extends React.Component {
           this.props.editFamily(imageData, this.props.family.id);
         }
         else if(formfor == "user") {
-          this.props.submitKid(imageData, this.props.kid.id);
+          this.props.editUser(imageData, this.props.user.id);
         };
       };
       reader.readAsDataURL(file);
@@ -58,7 +58,7 @@ class ImageUpload extends React.Component {
        <section className="col s6 offset-s3 ">
          <div className="dropzone">
            <Dropzone onDrop={this.onDrop.bind(this)}>
-             <h4>Add Image Here.</h4>
+             <p>Click/Drop here to add Image</p>
            </Dropzone>
          </div>
          <aside>

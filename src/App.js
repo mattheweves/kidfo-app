@@ -4,6 +4,7 @@ import './App.css';
 import Nav from './components/Nav';
 import Care from './components/Care';
 import User from './components/containers/User';
+import UserProfile from './components/UserProfile';
 import Home from './components/containers/Home';
 import Kids from './components/containers/Kids';
 import SignUp from './components/pages/SignUp';
@@ -21,7 +22,6 @@ class App extends Component {
     super(props);
     this.state = {
       signedIn: localStorage.getItem('signedIn'),
-      user: {},
       error: ''
     };
   }
@@ -89,14 +89,13 @@ class App extends Component {
               signOut={this.signOut}
               signedIn={signedIn}
             />
-
+            <User />
             <div className="container">
             { error && <Flash error={error} resetError={this.resetError} /> }
             { signedIn === "true" ?
                 <div>
                 <Route path="/kids" component={Kids}/>
                 <Route path="/care" component={Care}/>
-                <Route path="/home" component={User}/>
                   <Invitation
                     sendInvite={this.sendInvite}
                   />

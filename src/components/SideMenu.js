@@ -12,7 +12,7 @@ class SideMenu extends React.Component {
   render () {
     return (
       <Menu>
-          <li><Link to="/user/edit">Edit My Profile</Link></li>
+          <li><Link to="/profile/edit">Edit My Profile</Link></li>
           <li><a href="#modalspouse">Invite Spouse</a></li>
           <li><a href="#modalsitter">Invite Sitter</a></li>
           <li><Link to="/myfamily/edit">Edit My Family</Link></li>

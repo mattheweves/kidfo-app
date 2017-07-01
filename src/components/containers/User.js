@@ -2,7 +2,6 @@ import React from 'react';
 import MyFamilyDisplay from '../MyFamilyDisplay';
 import EditFamily from '../EditFamily';
 import Invites from './Invites';
-import UserProfile from '../UserProfile';
 import EditUserProfile from '../EditUserProfile';
 import urlFor from '../../helpers/urlFor';
 import userAuth from '../../helpers/userAuth';
@@ -12,8 +11,9 @@ import { BrowserRouter as Router, Route, Link, BrowserHistory } from 'react-rout
 
 class User extends React.Component {
 
-  componentDidMount() {
+  componentWillMount() {
     this.getMyAccount();
+    this.getMyFamily(localStorage.getItem('family'));
   }
 
   constructor (props) {
@@ -53,12 +53,11 @@ class User extends React.Component {
   }
 
   render() {
-    const { user, family, editFamily, editFamilyForm } = this.state;
+    const { user, family, editFamily, editFamilyForm, getMyAccount } = this.state;
       return(
         <div>
           <Invites />
-          <Route exact path="/userprofile" render={props => <UserProfile user={user}/> } />
-          <Route exact path ="/userprofile/edit" render={props => <EditUserProfile user={user} />  } />
+          <Route exact path ="/profile/edit" render={props => <EditUserProfile user={user} getMyAccount={this.getMyAccount} />  } />
           <Route exact path="/myfamily" render={props => <MyFamilyDisplay family={family} editMyFamily={this.editMyFamily} getMyFamily={this.getMyFamily} />  }   />
           <Route exact path="/myfamily/edit" render={props => <EditFamily family={family} editFamilyForm={editFamilyForm} editFamily={this.editFamily} getMyFamily={this.getMyFamily} />  }   />
         </div>
