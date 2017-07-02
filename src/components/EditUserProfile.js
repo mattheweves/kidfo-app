@@ -9,17 +9,18 @@ class EditUserProfile extends React.Component {
 
   componentWillMount() {
     this.props.getMyAccount();
+
   }
 
   onSubmit(e) {
     const formData = {
        first_name: this.first_name.value,
        last_name: this.last_name.value,
-       email: this.email.value,
+       phone_number: this.phone_number.value
     };
        this.editUser(formData);
        this.setState({ redirectToReferrer: true })
-       window.location.reload()
+       window.location.reload();
     };
 
     state = {
@@ -78,11 +79,11 @@ class EditUserProfile extends React.Component {
                 </div>
                 <div className="input-field col s6">
                     <input
-                      id="email" type="email" className="validate"
-                      defaultValue={user.email}
-                      ref={(input) => this.email = input}
+                      id="phone_number" type="text" className="validate"
+                      defaultValue={user.phone_number}
+                      ref={(input) => this.phone_number = input}
                     />
-                    <label for="name">Email</label>
+                    <label for="name">Phone Number</label>
                 </div>
               </div>
             <input className="waves-effect waves-light btn" type="submit" value="Submit" />

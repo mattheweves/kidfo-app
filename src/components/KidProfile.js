@@ -5,14 +5,13 @@ class KidProfile extends React.Component {
 
     render () {
     const { kid, family } = this.props;
-    const image_path = this.props.kid.image.url;
 
     return (
       <div>
         <div className="row">
         <div className="row">
          <br />
-              <img className="responsive-img circle col s4 offset-s4" src={image_path} ></img>
+            { kid.image? <img className="responsive-img circle col s4 offset-s4" src={kid.image.url} ></img> : "" } 
           </div>
           <div className="col s12" >
             <div className="col s6 offset-s3">

@@ -28,7 +28,7 @@ class FamilyProfile extends React.Component {
               <img src={family.image.url} alt="" className="responsive-img"></img>
             </div>
             <div className="col s6 offset-s3">
-                <h3>{family.name}</h3>
+                <h5>The {family.name} Family</h5>
                 { showParents === "true" ?
                    family.parents.map((p, index) => {
                       return(
@@ -38,7 +38,6 @@ class FamilyProfile extends React.Component {
                      :
                      ""
                }
-                <p>{family.kids.length} Kids</p>
             </div>
           </div>
         </div>

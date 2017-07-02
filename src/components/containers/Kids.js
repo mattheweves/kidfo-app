@@ -46,6 +46,12 @@ class Kids extends React.Component {
     .catch((err) => console.log(err.response.data) );
   }
 
+  viewKid = () => {
+      this.setState({
+        showKid: true
+      });
+  }
+
   editKid = (kid) => {
       this.setState({
         showKidForm: ! this.state.showKidForm,

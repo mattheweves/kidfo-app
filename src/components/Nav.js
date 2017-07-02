@@ -13,8 +13,8 @@ class Nav extends React.Component {
       <div>
       <nav>
         <div className="nav-wrapper">
-          <SideMenu signedIn={signedIn}/>
           <a href="#" className="brand-logo left">KIDFO</a>
+          <SideMenu signedIn={signedIn}/>
           <ul id="nav-mobile" className="right hide-on-sm-and-down">
           {
             signedIn === "true" ?

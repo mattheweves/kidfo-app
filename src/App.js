@@ -89,11 +89,12 @@ class App extends Component {
               signOut={this.signOut}
               signedIn={signedIn}
             />
-            <User />
+
             <div className="container">
             { error && <Flash error={error} resetError={this.resetError} /> }
             { signedIn === "true" ?
                 <div>
+                <User />
                 <Route path="/kids" component={Kids}/>
                 <Route path="/care" component={Care}/>
                   <Invitation

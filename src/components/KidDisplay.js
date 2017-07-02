@@ -15,11 +15,11 @@ class KidDisplay extends React.Component {
         <div className="card-panel grey lighten-5 z-depth-1">
           <div className="row valign-wrapper">
             <div className="col s2">
-              <img src={kid.image.url} alt="" className="circle responsive-img"></img>		
+              {kid.image ? <img src={kid.image.url} alt="" className="circle responsive-img"></img>: "" }
             </div>
             <div className="col s6 left-align">
               <span className="black-text left-align" onClick={() => getKid(kid.id)}>
-                <h5>
+               <h5>
                 { kid.name }
                 </h5><br />
                 { kid.birthdate }
