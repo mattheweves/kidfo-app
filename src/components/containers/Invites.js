@@ -27,6 +27,7 @@ class Invites extends React.Component {
     axios.post(urlFor(`invites/${id}/${action}`),userAuth())
     .then((res) => this.setState({ invites: res.data }))
     .catch((err) => console.log(err.response) );
+    window.location.reload();
   }
 
   render() {

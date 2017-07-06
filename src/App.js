@@ -8,6 +8,7 @@ import UserProfile from './components/UserProfile';
 import Home from './components/containers/Home';
 import Kids from './components/containers/Kids';
 import SignUp from './components/pages/SignUp';
+import EnableFamily from './components/pages/EnableFamily';
 import FamilyProfile from './components/FamilyProfile';
 import EditFamily from './components/EditFamily';
 import urlFor from './helpers/urlFor';
@@ -22,7 +23,8 @@ class App extends Component {
     super(props);
     this.state = {
       signedIn: localStorage.getItem('signedIn'),
-      error: ''
+      error: '',
+      user: {}
     };
   }
 
@@ -97,6 +99,7 @@ class App extends Component {
                 <User />
                 <Route path="/kids" component={Kids}/>
                 <Route path="/care" component={Care}/>
+                <Route exact path="/myfamily/enable" component={EnableFamily}/>
                   <Invitation
                     sendInvite={this.sendInvite}
                   />

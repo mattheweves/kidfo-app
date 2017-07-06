@@ -8,13 +8,15 @@ class Nav extends React.Component {
   render() {
 
     const { signOut, signedIn } = this.props;
-    const haveFamily = localStorage.getItem('family') > 0;
+    const hasFamily = localStorage.getItem('family') > 0;
+    const haveSpouse = localStorage.getItem('SpouseConnected');
+
     return (
       <div>
       <nav>
         <div className="nav-wrapper">
           <a href="#" className="brand-logo left">KIDFO</a>
-          <SideMenu signedIn={signedIn}/>
+          <SideMenu signedIn={signedIn} hasFamily={hasFamily}/>
           <ul id="nav-mobile" className="right hide-on-sm-and-down">
           {
             signedIn === "true" ?
@@ -22,7 +24,7 @@ class Nav extends React.Component {
               <li><Link to="/home">Home</Link></li>
               <li><Link to="/kids">Kids</Link></li>
               <li><Link to="/care">Care</Link></li>
-              { haveFamily && <li><Link to="/myfamily">My Family</Link></li> }
+              { hasFamily && <li><Link to="/myfamily">My Family</Link></li> }
               <li><a onClick={() => signOut()}>Sign Out</a></li>
             </div>
             :

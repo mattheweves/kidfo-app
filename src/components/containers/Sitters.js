@@ -12,8 +12,8 @@ class Sitters extends React.Component {
     this.getSitters();
   }
 
-  constructor () {
-    super();
+  constructor (props) {
+    super(props);
     this.state = {
       showSitter: false,
       sitters: [],
@@ -58,7 +58,9 @@ class Sitters extends React.Component {
                      />
                    );
                  })
-                : ""
+                : <div>
+                  You do not have any sitters at this time, invite them via the link in the side menu, or click below to invite your first.<br /><br />
+                  <a href="#modalsitter" className="waves-effect waves-light btn">Invite Sitter</a></div>
               }
           </div>
       );

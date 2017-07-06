@@ -20,7 +20,8 @@ class Kids extends React.Component {
       kids: [],
       kid: {},
       showKidForm: false,
-      showKid: false
+      showKid: false,
+      familyid: localStorage.getItem('family')
     };
   }
 
@@ -90,8 +91,8 @@ class Kids extends React.Component {
   }
 
   render() {
-    const { kids, kid, getKids, getKid, editKid, showKidForm, showKid, getFamily } = this.state;
-
+    const { kids, kid, familyid, getKids, getKid, editKid, showKidForm, showKid, getFamily } = this.state;
+    const haveFamily = localStorage.getItem('family') > 0;
 
     return(
       <div>
@@ -108,6 +109,7 @@ class Kids extends React.Component {
           getFamily={this.getFamily}
         />
           :
+         this.state.kids.length > 0 ?
          this.state.kids.map((kid, index) => {
             return(
               <KidDisplay
@@ -120,10 +122,14 @@ class Kids extends React.Component {
                 editKid={this.editKid}
               />
             );
-          })
+          }): ""
+        }
+        {
+         haveFamily ?
+         <a className="waves-effect waves-light btn" onClick={() => this.toggleKid()}>+ Kid</a>
+          :
+         "If you would like to add your own kids to Kidfo, use the side menu to enable a Family Account."
       }
-      <a className="waves-effect waves-light btn" onClick={() => this.toggleKid()}>+ Kid</a><br />
-
       </div>
     );
   }

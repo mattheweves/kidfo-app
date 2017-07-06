@@ -10,7 +10,9 @@ class SitterProfile extends React.Component {
         <div className="row">
           <div className="col s12" >
             <div className="row">
-             <br />
+              <div className="col s4 offset-s4">
+                { sitter.image ? <img src={sitter.image.url} alt="" className="circle responsive-img"></img> : "" }
+              </div>
             </div>
             <div className="col s6 offset-s3">
                 <h3>{sitter.first_name}</h3>

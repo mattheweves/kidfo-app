@@ -11,6 +11,7 @@ class SignUp extends React.Component {
        first_name: this.first_name.value,
        last_name: this.last_name.value,
        email: this.email.value,
+       phone_number: this.phone_number.value,
        password: this.password.value,
        password_confirmation: this.password_confirmation.value
     };
@@ -39,7 +40,7 @@ class SignUp extends React.Component {
 
     if (redirectToReferrer) {
       return (
-        <Redirect from={SignUp} to='/login'/>
+        <Redirect from={SignUp} to='/'/>
       )
     }
     return (
@@ -69,6 +70,13 @@ class SignUp extends React.Component {
                     ref={(input) => this.email = input}
                   />
                   <label for="name">Email</label>
+              </div>
+              <div className="input-field col s6">
+                  <input
+                    id="phone_number" type="text" className="validate"
+                    ref={(input) => this.phone_number = input}
+                  />
+                  <label for="phone_number">Phone Number</label>
               </div>
               <div className="input-field col s6">
                   <input
