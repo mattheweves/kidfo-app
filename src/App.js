@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Redirect, Route, History, Link, BrowserHistory } from 'react-router-dom';
 import './App.css';
 import Nav from './components/Nav';
-import Care from './components/Care';
+import Sitters from './components/containers/Sitters';
+import Families from './components/containers/Families';
 import User from './components/containers/User';
 import UserProfile from './components/UserProfile';
 import Home from './components/containers/Home';
 import Kids from './components/containers/Kids';
 import SignUp from './components/pages/SignUp';
 import EnableFamily from './components/pages/EnableFamily';
-import FamilyProfile from './components/FamilyProfile';
 import EditFamily from './components/EditFamily';
 import urlFor from './helpers/urlFor';
 import userAuth from './helpers/userAuth';
@@ -98,7 +98,8 @@ class App extends Component {
                 <div>
                 <User />
                 <Route path="/kids" component={Kids}/>
-                <Route path="/care" component={Care}/>
+                <Route path="/families" component={Families}/>
+                <Route path="/sitters" component={Sitters}/>
                 <Route exact path="/myfamily/enable" component={EnableFamily}/>
                   <Invitation
                     sendInvite={this.sendInvite}

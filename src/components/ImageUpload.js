@@ -51,25 +51,31 @@ class ImageUpload extends React.Component {
         };
       };
       reader.readAsDataURL(file);
-    
+
  }
 
    render() {
      return (
        <section className="col s6 offset-s3 ">
-         <div className="dropzone">
-           <Dropzone onDrop={this.onDrop.bind(this)}>
-             <p>Click/Drop here to add Image</p>
-           </Dropzone>
+         <li><a href="#imageupload">Change Image</a></li>
+         <div id="imageupload" className="modal top-sheet">
+           <div className="modal-content">
+             <h4>Image Upload</h4>
+             <div>
+               <Dropzone onDrop={this.onDrop.bind(this)}>
+                 <img src="/img/userplaceholder.png" className="circle responsive-img"></img>Drop here to add Image
+               </Dropzone>
+             </div>
+             <aside>
+               <p>Uploaded files</p>
+               <ul>
+                {
+                   this.state.files.map(f => <li>{f.name} - {f.size} bytes</li>)
+                }
+               </ul>
+             </aside>
+           </div>
          </div>
-         <aside>
-           <p>Uploaded files</p>
-           <ul>
-            {
-               this.state.files.map(f => <li>{f.name} - {f.size} bytes</li>)
-            }
-           </ul>
-         </aside>
        </section>
      );
    }

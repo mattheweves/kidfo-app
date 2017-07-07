@@ -15,7 +15,7 @@
     "react-file-base64": "git+https://github.com/lrojas94/react-file-base64.git",
     "react-materialize": "^1.0.1",
     "react-router": "^4.1.1",
-    "react-router-dom": "^4.1.1",
+    "react-router-dom": "next",
     "redux-form": "^6.7.0"
   },
   "devDependencies": {

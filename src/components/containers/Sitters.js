@@ -40,11 +40,10 @@ class Sitters extends React.Component {
 
       if(hasFamily){
       return(
+        <Router>
         <div><div className="row"><h5 className="left">My Sitters</h5></div>
               { showSitter ?
-                <SitterProfile
-                  sitter={sitter}
-                />
+                <Route path={`/sitters/${sitter.id}`} render={props => <SitterProfile sitter={sitter} /> } />
                 :
                 sitters.length > 0 ?
                    sitters.map((sitter, index) => {
@@ -63,6 +62,7 @@ class Sitters extends React.Component {
                   <a href="#modalsitter" className="waves-effect waves-light btn">Invite Sitter</a></div>
               }
           </div>
+          </Router>
       );
     } else
       { return null; }

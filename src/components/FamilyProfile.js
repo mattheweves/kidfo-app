@@ -1,10 +1,9 @@
 import React from 'react';
 import KidDisplay from './KidDisplay';
+import { BrowserRouter as Router, Route, Link, BrowserHistory } from 'react-router-dom';
 
 
 class FamilyProfile extends React.Component {
-
-
 
     render () {
     const { family } = this.props;
@@ -18,9 +17,8 @@ class FamilyProfile extends React.Component {
                        />
                      );
                    });
-
-
     return (
+      <Router>
       <div>
         <div className="row">
           <div className="col s12" >
@@ -43,10 +41,9 @@ class FamilyProfile extends React.Component {
         </div>
         { kids }
       </div>
+      </Router>
     );
-
   }
-
 }
 
 export default FamilyProfile;

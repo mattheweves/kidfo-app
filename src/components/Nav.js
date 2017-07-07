@@ -21,9 +21,10 @@ class Nav extends React.Component {
           {
             signedIn === "true" ?
             <div>
-              <li><Link to="/home">Home</Link></li>
-              <li><Link to="/kids">Kids</Link></li>
-              <li><Link to="/care">Care</Link></li>
+              <li><Link to="/home" >Home</Link></li>
+              <li><Link to="/kids" onClick="window.location.reload()" >Kids</Link></li>
+              <li><Link to="/families" onClick="window.location.reload()">Families</Link></li>
+              <li><Link to="/sitters" onClick="window.location.reload()">Sitters</Link></li>
               { hasFamily && <li><Link to="/myfamily">My Family</Link></li> }
               <li><a onClick={() => signOut()}>Sign Out</a></li>
             </div>

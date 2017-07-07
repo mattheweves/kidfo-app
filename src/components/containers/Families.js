@@ -41,25 +41,26 @@ class Families extends React.Component {
 
      if(familiesExist){
           return(
+            <Router>
             <div><div className="row"><h5 className="left">Families I Sit For</h5></div>
               { showFamily ?
-                <FamilyProfile
-                  family={family}
-                />
+                <Route path={`/families/${family.id}`} render={props => <FamilyProfile family={family} /> } />
                 :
                 this.state.families.map((family, index) => {
                    return(
-                     <FamilyDisplay
-                       key={index}
+                     <div>
+                      <FamilyDisplay
                        index={index}
                        family={family}
                        getFamily={this.getFamily}
                        showFamily={this.showFamily}
                      />
+                     </div>
                    );
                  })
               }
             </div>
+            </Router>
           );
         }
       else

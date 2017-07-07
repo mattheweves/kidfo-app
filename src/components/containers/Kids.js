@@ -10,8 +10,12 @@ import axios from 'axios';
 
 class Kids extends React.Component {
 
-  componentWillMount() {
+  componentDidMount() {
     this.getKids();
+  }
+
+  componentDidUpdate() {
+    
   }
 
   constructor () {
@@ -95,42 +99,40 @@ class Kids extends React.Component {
     const haveFamily = localStorage.getItem('family') > 0;
 
     return(
-      <div>
-      <Route path="/kid/:id" component={KidProfile}/>
-      { showKidForm ?
-        <KidForm
-          kid={kid}
-          submitKid={this.submitKid}
-        />
-          :
-        showKid ?
-        <KidProfile
-          kid={kid}
-          getFamily={this.getFamily}
-        />
-          :
-         this.state.kids.length > 0 ?
-         this.state.kids.map((kid, index) => {
-            return(
-              <KidDisplay
-                key={index}
-                index={index}
-                kid={kid}
-                getKid={this.getKid}
-                deleteKid={this.deleteKid}
-                showKid={this.showKid}
-                editKid={this.editKid}
-              />
-            );
-          }): ""
+      <Router>
+        <div>
+        { showKidForm ?
+          <KidForm
+            kid={kid}
+            submitKid={this.submitKid}
+          />
+            :
+          showKid ?
+          <Route path={`/kids/${kid.id}`} render={props => <KidProfile kid={kid} getFamily={this.getFamily} /> } />
+            :
+           this.state.kids.length > 0 ?
+           this.state.kids.map((kid, index) => {
+              return(
+                <KidDisplay
+                  key={index}
+                  index={index}
+                  kid={kid}
+                  getKid={this.getKid}
+                  deleteKid={this.deleteKid}
+                  showKid={this.showKid}
+                  editKid={this.editKid}
+                />
+              );
+            }): ""
+          }
+          {
+           haveFamily ?
+           <a className="waves-effect waves-light btn" onClick={() => this.toggleKid()}>+ Kid</a>
+            :
+           "If you would like to add your own kids to Kidfo, use the side menu to enable a Family Account."
         }
-        {
-         haveFamily ?
-         <a className="waves-effect waves-light btn" onClick={() => this.toggleKid()}>+ Kid</a>
-          :
-         "If you would like to add your own kids to Kidfo, use the side menu to enable a Family Account."
-      }
-      </div>
+        </div>
+      </Router>
     );
   }
 }

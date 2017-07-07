@@ -19,8 +19,9 @@ class KidDisplay extends React.Component {
             </div>
             <div className="col s6 left-align">
               <span className="black-text left-align" onClick={() => getKid(kid.id)}>
-               <h5>
-                { kid.name }
+               <h5><Link to={`kids/${kid.id}`}>
+                  { kid.name }
+                  </Link>
                 </h5><br />
                 { kid.birthdate }
               </span>
