@@ -1,5 +1,8 @@
 import React from 'react';
 import ImageUpload from './ImageUpload';
+import urlFor from '../helpers/urlFor';
+import userAuth from '../helpers/userAuth';
+import axios from 'axios';
 
 class KidForm extends React.Component {
 
@@ -15,23 +18,52 @@ class KidForm extends React.Component {
          birthdate: this.birthdate.value,
          bedtime: this.bedtime.value
       };
-        this.props.submitKid(formData, this.props.kid.id);
+        this.submitKid(formData, this.props.kid.id);
 
     };
+
+    performSubmissionRequest = (data, id) => {
+      if (id) {
+        return axios.patch(urlFor(`kids/${id}`), data,userAuth());
+      }
+      else {
+        return axios.post(urlFor(`kids`), data,userAuth());
+      }
+    }
+
+    submitKid = (data, id) => {
+      this.performSubmissionRequest(data,id)
+      .then((res) => this.setState( { kid: res.data, showKidForm: false }) )
+      .catch((err) => {
+         const { errors } = err.response.data;
+          if (errors.name) {
+            this.setState({ error: "Missing Name!" });
+          } else  {
+            this.setState({ error: "Error: check your Data!"});
+          }
+      });
+      window.location.reload();
+    }
 
 
     render() {
 
-    const { kid, submitKid } = this.props;
+    const { kid } = this.props;
+    const haveFamily = localStorage.getItem('family') > 0;
+
 
     return(
       <div>
-      <ImageUpload
-        formtype="kid"
-        kid={kid}
-        submitKid={submitKid}
-      />
-      <div className="row">
+      {
+       haveFamily ?
+        <div>
+        { kid.name ?
+        <ImageUpload
+          formtype="kid"
+          kid={kid}
+          submitKid={this.submitKid}
+        /> : "" }
+        <div className="row">
           <form
             className="col s12"
             onSubmit={(e) => this.onSubmit(e)}
@@ -116,7 +148,10 @@ class KidForm extends React.Component {
           <input className="waves-effect waves-light btn" type="submit" value="Submit" />
           </form>
           </div>
-      </div>
+        </div>
+        :""
+      }
+    </div>
     );
     }
 }

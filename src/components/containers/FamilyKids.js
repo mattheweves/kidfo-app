@@ -8,7 +8,7 @@ import userAuth from '../../helpers/userAuth';
 import axios from 'axios';
 
 
-class Kids extends React.Component {
+class FamilyKids extends React.Component {
 
   componentWillMount() {
     if(!this.props.kids){
@@ -24,9 +24,7 @@ class Kids extends React.Component {
     this.state = {
       kids: [],
       kid: {},
-      showKidForm: false,
-      showKid: false,
-      familyid: localStorage.getItem('family')
+      showKid: false
     };
   }
 
@@ -35,12 +33,6 @@ class Kids extends React.Component {
         showKidForm: ! this.state.showKidForm,
         kid: {}
       });
-  }
-
-  getKids = () => {
-    axios.get(urlFor('kids'),userAuth())
-    .then((res) => this.setState( { kids: res.data } ))
-    .catch((err) => console.log(err.response) );
   }
 
   getKid = (id) => {
@@ -58,32 +50,10 @@ class Kids extends React.Component {
       });
   }
 
-  editKid = (kid) => {
-      this.setState({
-        showKidForm: ! this.state.showKidForm,
-        kid: kid
-      });
-  }
-
-  deleteKid = (id) => {
-    const newKidsState = this.state.kids.filter((kid) => kid.id !== id );
-    axios.delete(urlFor(`kids/${id}`),userAuth())
-    .then((res) => this.setState( { kids: newKidsState }) )
-    .catch((err) => console.log(err.response.data) );
-  }
-
-  performSubmissionRequest = (data, id) => {
-    if (id) {
-      return axios.patch(urlFor(`kids/${id}`), data,userAuth());
-    }
-    else {
-      return axios.post(urlFor(`kids`), data,userAuth());
-    }
-  }
 
   render() {
     const { kids, kid, familyid, getKids, getKid, editKid, showKidForm, showKid, getFamily } = this.state;
-    const myKid = true;
+    const haveFamily = localStorage.getItem('family') > 0;
 
     return(
       <Router>
@@ -104,20 +74,16 @@ class Kids extends React.Component {
                   key={index}
                   index={index}
                   kid={kid}
-                  myKid={myKid}
                   getKid={this.getKid}
-                  deleteKid={this.deleteKid}
                   showKid={this.showKid}
-                  editKid={this.editKid}
                 />
               );
             }): ""
           }
-
         </div>
       </Router>
     );
   }
 }
 
-export default Kids;
+export default FamilyKids;

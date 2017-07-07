@@ -17,7 +17,8 @@ class SitterDisplay extends React.Component {
               </div>
               <div className="col s6 left-align">
                 <span className="black-text left-align" onClick={() => getSitter(sitter.id)}>
-                  <h5><Link to={`sitters/${sitter.id}`}>{ sitter.first_name } { sitter.last_name }</Link></h5><br />
+                  <h5><Link to={`/sitters/${sitter.id}`}>{ sitter.first_name } { sitter.last_name }</Link></h5><br />
+                  <b>{sitter.phone_number}</b>
                   <p>{ sitter.email }</p>
                 </span>
               </div>

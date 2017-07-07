@@ -8,6 +8,7 @@ import User from './components/containers/User';
 import UserProfile from './components/UserProfile';
 import Home from './components/containers/Home';
 import Kids from './components/containers/Kids';
+import KidForm from './components/KidForm';
 import SignUp from './components/pages/SignUp';
 import EnableFamily from './components/pages/EnableFamily';
 import EditFamily from './components/EditFamily';
@@ -24,6 +25,7 @@ class App extends Component {
     this.state = {
       signedIn: localStorage.getItem('signedIn'),
       error: '',
+      kid: {},
       user: {}
     };
   }
@@ -78,7 +80,7 @@ class App extends Component {
   render() {
 
     const {
-            user, signIn, signOut, signedIn,
+            user, signIn, signOut, signedIn, kid,
             error
            } = this.state;
 
@@ -97,7 +99,8 @@ class App extends Component {
             { signedIn === "true" ?
                 <div>
                 <User />
-                <Route path="/kids" component={Kids}/>
+                <Route exact path="/kids" component={Kids}/>
+                <Route path="/kids/new" render={props =><KidForm kid={kid}/> } />
                 <Route path="/families" component={Families}/>
                 <Route path="/sitters" component={Sitters}/>
                 <Route exact path="/myfamily/enable" component={EnableFamily}/>

@@ -8,25 +8,27 @@ class KidDisplay extends React.Component {
 
   render() {
 
-    const { kid, getKid, deleteKid, editKid } = this.props;
+    const { kid, myKid, getKid, deleteKid, editKid } = this.props;
 
     return (
-      <div className="col s12 m8 offset-m2 l6 offset-l3">
-        <div className="card-panel grey lighten-5 z-depth-1">
-          <div className="row valign-wrapper">
-            <div className="col s2">
+      <div className="row">
+        <div className="col s12 m8 offset-m2 l6 offset-l3">
+          <div className="card-panel grey lighten-5 z-depth-1">
+            <div className="row valign-wrapper">
+            <div className="col s4 l4">
               {kid.image ? <img src={kid.image.url} alt="" className="circle responsive-img"></img>: "" }
             </div>
-            <div className="col s6 left-align">
+            <div className="col s4 l4 left-align">
               <span className="black-text left-align" onClick={() => getKid(kid.id)}>
-               <h5><Link to={`kids/${kid.id}`}>
+               <h5><Link to={`/kids/${kid.id}`}>
                   { kid.name }
                   </Link>
                 </h5><br />
                 { kid.birthdate }
               </span>
             </div>
-            <div className="col s4">
+            { myKid ?
+            <div className="col s4 l4">
               <span className="note-card-edit" onClick={() => editKid(kid)}>
                 <i className="material-icons">mode_edit</i>
               </span>
@@ -34,6 +36,10 @@ class KidDisplay extends React.Component {
                 <i className="material-icons">delete</i>
               </span>
             </div>
+            :
+            ""
+           }
+           </div>
           </div>
         </div>
       </div>

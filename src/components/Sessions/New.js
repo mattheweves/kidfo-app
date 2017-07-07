@@ -28,7 +28,7 @@ class New extends React.Component {
 
     if (redirectToReferrer) {
       return (
-        <Redirect from={New} to='/'/>
+        <Redirect from={New} to='/home'/>
       )
     }
     return (

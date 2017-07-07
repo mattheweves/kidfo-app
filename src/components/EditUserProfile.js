@@ -16,7 +16,8 @@ class EditUserProfile extends React.Component {
     const formData = {
        first_name: this.first_name.value,
        last_name: this.last_name.value,
-       phone_number: this.phone_number.value
+       phone_number: this.phone_number.value,
+       motto: this.motto.value
     };
        this.editUser(formData);
        this.setState({ redirectToReferrer: true })
@@ -84,6 +85,14 @@ class EditUserProfile extends React.Component {
                       ref={(input) => this.phone_number = input}
                     />
                     <label for="name">Phone Number</label>
+                </div>
+                <div className="input-field col s12">
+                    <input
+                      id="motto" type="text" className="validate"
+                      defaultValue={user.motto}
+                      ref={(input) => this.motto = input}
+                    />
+                    <label for="name">Parenting/Sitting Motto</label>
                 </div>
               </div>
             <input className="waves-effect waves-light btn" type="submit" value="Submit" />

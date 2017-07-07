@@ -15,7 +15,9 @@ class SitterProfile extends React.Component {
               </div>
             </div>
             <div className="col s6 offset-s3">
-                <h3>{sitter.first_name}</h3>
+                <h3>{sitter.first_name} {sitter.last_name}</h3><br />
+                Care Motto:<i>{sitter.motto}</i><br />
+                <b>{sitter.phone_number}</b>
                 <p>{sitter.email}</p>
             </div>
           </div>

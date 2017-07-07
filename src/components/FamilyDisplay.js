@@ -17,7 +17,7 @@ class FamilyDisplay extends React.Component {
             </div>
             <div className="col s6 left-align">
               <span className="black-text left-align" onClick={() => getFamily(family.id)}>
-              <h5><Link to={`families/${family.id}`}>
+              <h5><Link to={`/families/${family.id}`}>
                   The { family.name } Family
                   </Link>
               </h5><br />

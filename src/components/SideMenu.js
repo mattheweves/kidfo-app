@@ -13,10 +13,13 @@ class SideMenu extends React.Component {
     return (
       <Menu>
           <li><Link to="/profile/edit">Edit My Profile</Link></li>
-          <li><a href="#modalspouse">Invite Spouse</a></li>
-          <li><a href="#modalsitter">Invite Sitter</a></li>
           { hasFamily ?
-            <li><Link to="/myfamily/edit">Edit My Family</Link></li>
+            <span>
+              <Link to="/kids/new">+ Add A Kid</Link><br />
+              <Link to="/myfamily/edit">Edit My Family</Link><br />
+              <a href="#modalspouse">Invite Spouse</a><br />
+              <a href="#modalsitter">Invite Sitter</a><br />
+            </span>
             :
             <li><Link to="/myfamily/enable">Enable Family Account</Link></li>
           }
