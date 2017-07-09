@@ -24,7 +24,7 @@ class FamilyKids extends React.Component {
     this.state = {
       kids: [],
       kid: {},
-      showKid: false
+      showKid: false,
     };
   }
 
@@ -54,6 +54,7 @@ class FamilyKids extends React.Component {
   render() {
     const { kids, kid, familyid, getKids, getKid, editKid, showKidForm, showKid, getFamily } = this.state;
     const haveFamily = localStorage.getItem('family') > 0;
+    const myKid = false;
 
     return(
       <Router>
@@ -74,6 +75,7 @@ class FamilyKids extends React.Component {
                   key={index}
                   index={index}
                   kid={kid}
+                  myKid={myKid}
                   getKid={this.getKid}
                   showKid={this.showKid}
                 />

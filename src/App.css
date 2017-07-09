@@ -20,6 +20,14 @@
 .medical {
   text-align: left;
 }
+
+.dropzone {
+  width : 20%;
+  height : 20%;
+  border : 1px solid black;
+  border-radius: 30%;
+}
+
 /* flash.css */
 .flash-container {
   position: absolute;
