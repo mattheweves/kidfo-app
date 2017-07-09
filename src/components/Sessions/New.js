@@ -19,8 +19,6 @@ class New extends React.Component {
       redirectToReferrer: false
     }
 
-
-
   render() {
 
     const { user, signedIn } = this.props;

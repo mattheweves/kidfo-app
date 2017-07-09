@@ -16,7 +16,7 @@ class KidDisplay extends React.Component {
           <div className="card-panel grey lighten-5 z-depth-1">
             <div className="row valign-wrapper">
             <div className="col s4 l4">
-              {kid.image ? <img src={kid.image.url} alt="" className="circle responsive-img"></img>: "" }
+              {kid.image ? <img src={kid.image.url} alt="" className="kid-img circle responsive-img"></img>: "" }
             </div>
             <div className="col s4 l4 left-align">
               <span className="black-text left-align" onClick={() => getKid(kid.id)}>

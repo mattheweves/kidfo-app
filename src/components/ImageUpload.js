@@ -55,11 +55,31 @@ class ImageUpload extends React.Component {
  }
 
    render() {
+     const { user, family, kid } = this.props;
+
      return (
        <div>
             <Dropzone className="dropzone center-align" onDrop={this.onDrop.bind(this)}>
-              <img src="/img/userplaceholder.png" className="circle responsive-img"></img>
+              { user && user.image ? <img src={user.image.url} alt="" className="circle profile-img responsive-img"></img>
+                :
+                family && family.image ? <img src={family.image.url} alt="" className="responsive-img"></img>
+                :
+                kid && kid.image ? <img src={kid.image.url} alt="" className="circle responsive-img"></img>
+                :
+                <img src="/img/userplaceholder.png" className="circle responsive-img"></img>
+              }
+              <br /><br />
+              <span className="waves-effect waves-light btn">Upload New Picture</span><br /><br />
             </Dropzone>
+            <aside>
+                <p>Uploaded files</p>
+                <ul>
+                 {
+                    this.state.files.map(f => <li>{f.name} - {f.size} bytes.  Image will show upon refresh.</li>)
+                 }
+                </ul>
+            </aside>
+
        </div>
      );
    }

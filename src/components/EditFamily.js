@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Link, BrowserHistory, Redirect } from '
 import ImageUpload from './ImageUpload';
 
 class EditFamily extends React.Component {
-  
+
     componentDidMount() {
       this.props.getMyFamily(localStorage.getItem('family'));
     }
@@ -38,9 +38,6 @@ class EditFamily extends React.Component {
         family={family}
         editFamily={editFamily}
       />
-      <div className="col s6 offset-s2">
-        <img src={family.image.url} alt="" className="responsive-img"></img>
-      </div>
       <div className="row">
           <form
             className="col s12"

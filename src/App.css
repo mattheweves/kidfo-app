@@ -22,10 +22,35 @@
 }
 
 .dropzone {
-  width : 20%;
-  height : 20%;
-  border : 1px solid black;
-  border-radius: 30%;
+
+}
+
+.profile-img {
+  border-radius: 50%;
+  width: 30%;
+  margin: auto;
+  display: block;
+  margin: auto;
+  height: 30%;
+  border: 3px solid white;
+  box-shadow: 0 0 2px 2px #937C50;
+}
+
+.kid-img {
+    border-radius: 50%;
+    height: 140px;
+    width: 140px;
+    background: #fff;
+    border: 2px solid white;
+    box-shadow: 0 0 2px 2px #EBB97D;
+}
+
+.sitter-img {
+    border-radius: 2px;
+		background: #fff;
+		border: 2px solid white;
+		box-shadow: 0 0 2px 2px #937C50;
+		margin: 0 auto;
 }
 
 /* flash.css */

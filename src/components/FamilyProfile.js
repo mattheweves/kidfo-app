@@ -1,7 +1,7 @@
 import React from 'react';
 import KidDisplay from './KidDisplay';
 import { BrowserRouter as Router, Route, Link, BrowserHistory } from 'react-router-dom';
-import FamilyKids from '../components/containers/Kids'
+import FamilyKids from '../components/containers/FamilyKids'
 
 class FamilyProfile extends React.Component {
 

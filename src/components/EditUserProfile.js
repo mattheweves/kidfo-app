@@ -54,9 +54,6 @@ class EditUserProfile extends React.Component {
           editUser={this.editUser}
         />
         <div className="row">
-            <div className="col s4 offset-s4">
-              { user.image ? <img src={user.image.url} alt="" className="circle responsive-img"></img>: "" }
-            </div>
             <form
               className="col s12"
               onSubmit={(e) => this.onSubmit(e)}

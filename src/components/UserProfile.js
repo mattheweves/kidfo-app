@@ -8,8 +8,8 @@ class UserProfile extends React.Component {
     return (
       <div>
           <div className="row">
-            <div className="col s4 offset-s4">
-              { user.image ? <img src={user.image.url} alt="" className="circle responsive-img"></img> : "" }
+            <div className="col s10 offset-s1">
+              { user.image ? <img src={user.image.url} alt="" className="profile-img circle responsive-img"></img> : "" }
             </div>
           </div>
           <div className="row">

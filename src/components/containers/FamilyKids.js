@@ -54,7 +54,7 @@ class FamilyKids extends React.Component {
   render() {
     const { kids, kid, familyid, getKids, getKid, editKid, showKidForm, showKid, getFamily } = this.state;
     const haveFamily = localStorage.getItem('family') > 0;
-    const myKid = false;
+    let myKid = false;
 
     return(
       <Router>

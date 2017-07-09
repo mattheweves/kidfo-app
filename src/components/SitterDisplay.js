@@ -13,7 +13,7 @@ class SitterDisplay extends React.Component {
           <div className="card-panel grey lighten-5 z-depth-1">
             <div className="row valign-wrapper">
               <div className="col s4">
-                { sitter.image ? <img src={sitter.image.url} alt="" className="circle responsive-img"></img> : "" }
+                { sitter.image ? <img src={sitter.image.url} alt="" className="sitter-img circle responsive-img"></img> : "" }
               </div>
               <div className="col s6 left-align">
                 <span className="black-text left-align" onClick={() => getSitter(sitter.id)}>

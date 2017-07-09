@@ -30,17 +30,10 @@ class App extends Component {
     };
   }
 
-  goHome = () => {
-    this.setState({
-      signedIn: localStorage.getItem('signedIn')
-    });
-  }
-
   signIn = (data) => {
     axios.post(urlFor(`sessions`), data)
     .then((res) => {
       this.setState( { user: res.data, signedIn: true });
-      localStorage.setItem('image', this.state.user.image);
       localStorage.setItem('token', this.state.user.authentication_token);
       localStorage.setItem('email', this.state.user.email);
       localStorage.setItem('family', this.state.user.family_id);
@@ -56,6 +49,27 @@ class App extends Component {
         }
     });
   }
+
+  signUp = (formdata) => {
+    axios.post(urlFor(`users`), formdata)
+    .then((res) => {
+      this.setState( { user: res.data, signedIn: true });
+      localStorage.setItem('token', this.state.user.authentication_token);
+      localStorage.setItem('email', this.state.user.email);
+      localStorage.setItem('family', this.state.user.family_id);
+      localStorage.setItem('signedIn', true);
+      window.location.reload();
+     })
+    .catch((err) => console.log(err.response) );
+  }
+
+  goHome = () => {
+   this.setState({
+     signedIn: localStorage.getItem('signedIn')
+   });
+   window.location.reload();
+
+ }
 
   signOut = () => {
     const data = localStorage.getItem('token');
@@ -98,7 +112,7 @@ class App extends Component {
             { error && <Flash error={error} resetError={this.resetError} /> }
             { signedIn === "true" ?
                 <div>
-                <User />
+                <User user={user} />
                 <Route exact path="/kids" component={Kids}/>
                 <Route path="/kids/new" render={props =><KidForm kid={kid}/> } />
                 <Route path="/families" component={Families}/>
@@ -111,7 +125,7 @@ class App extends Component {
                 :
                 <div>
                   <Route exact path="/login" render={props => <New user={user} signIn={this.signIn} signedIn={signedIn} />  } />
-                  <Route exact path="/sign_up" render={props => <SignUp user={user} />  } />
+                  <Route exact path="/sign_up" render={props => <SignUp user={user} signUp={this.signUp}/>  } />
                 </div>
             }
             </div>
