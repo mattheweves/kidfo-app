@@ -3,6 +3,8 @@ import ImageUpload from './ImageUpload';
 import urlFor from '../helpers/urlFor';
 import userAuth from '../helpers/userAuth';
 import axios from 'axios';
+import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom';
+
 
 class KidForm extends React.Component {
 
@@ -19,21 +21,27 @@ class KidForm extends React.Component {
          bedtime: this.bedtime.value
       };
         this.submitKid(formData, this.props.kid.id);
+        this.setState({ redirectToReferrer: true })
+        window.location.reload();
 
     };
 
-    performSubmissionRequest = (data, id) => {
+    state = {
+      redirectToReferrer: false
+    }
+
+    performSubmissionRequest = (formdata, id) => {
       if (id) {
-        return axios.patch(urlFor(`kids/${id}`), data,userAuth());
+        return axios.patch(urlFor(`kids/${id}`), formdata,userAuth());
       }
       else {
-        return axios.post(urlFor(`kids`), data,userAuth());
+        return axios.post(urlFor('kids'), formdata,userAuth());
       }
     }
 
     submitKid = (data, id) => {
       this.performSubmissionRequest(data,id)
-      .then((res) => this.setState( { kid: res.data, showKidForm: false }) )
+      .then((res) => this.setState( { redirectToReferrer: true }) )
       .catch((err) => {
          const { errors } = err.response.data;
           if (errors.name) {
@@ -42,7 +50,6 @@ class KidForm extends React.Component {
             this.setState({ error: "Error: check your Data!"});
           }
       });
-      window.location.reload();
     }
 
 
@@ -50,8 +57,13 @@ class KidForm extends React.Component {
 
     const { kid } = this.props;
     const haveFamily = localStorage.getItem('family') > 0;
+    const { redirectToReferrer } = this.state;
 
-
+    if (redirectToReferrer) {
+      return (
+        <Redirect to='/kids'/>
+      )
+    }
     return(
       <div>
       {

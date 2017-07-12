@@ -60,11 +60,11 @@ class ImageUpload extends React.Component {
      return (
        <div>
             <Dropzone className="dropzone center-align" onDrop={this.onDrop.bind(this)}>
-              { user && user.image ? <img src={user.image.url} alt="" className="circle profile-img responsive-img"></img>
+              { user && user.image && user.image.url ? <img src={user.image.url} alt="" className="circle profile-img responsive-img"></img>
                 :
-                family && family.image ? <img src={family.image.url} alt="" className="responsive-img"></img>
+                family && family.image && family.image.url ? <img src={family.image.url} alt="" className="responsive-img"></img>
                 :
-                kid && kid.image ? <img src={kid.image.url} alt="" className="circle responsive-img"></img>
+                kid && kid.image && kid.image.url ? <img src={kid.image.url} alt="" className="circle responsive-img"></img>
                 :
                 <img src="/img/userplaceholder.png" className="circle responsive-img"></img>
               }

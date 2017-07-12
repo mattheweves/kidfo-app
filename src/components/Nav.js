@@ -15,7 +15,7 @@ class Nav extends React.Component {
       <div>
       <nav>
         <div className="nav-wrapper">
-          <Link to="/home" ><img className="brand-logo left" src='/img/kidfologo.png'></img></Link>
+          <Link to="/home" ><img className="brand-logo" src='/img/kidfologo.png'></img></Link>
           <SideMenu user={user} signedIn={signedIn} hasFamily={hasFamily} signOut={signOut}/>
           <ul id="nav-mobile" className="button-collapse right hide-on-sm-and-down">
           {
@@ -23,8 +23,8 @@ class Nav extends React.Component {
             <div>
               { hasFamily && <li><Link to="/kids" onClick="window.location.reload()" >Kids</Link></li> }
               <li><Link to="/families" onClick="window.location.reload()">Families</Link></li>
-              { hasFamily && <li><Link to="/myfamily">My Family</Link></li> }
               { hasFamily && <li><Link to="/sitters" onClick="window.location.reload()">Sitters</Link></li>}
+              { hasFamily && <li><Link to="/myfamily">My Family</Link></li> }
             </div>
             :
             <div>

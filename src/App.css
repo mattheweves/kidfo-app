@@ -53,6 +53,15 @@
 		margin: 0 auto;
 }
 
+.side-menu {
+  left: 10%;
+  height: 30px;
+  margin-top: 15px;
+  width: auto;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
 /* flash.css */
 .flash-container {
   position: absolute;
@@ -4489,8 +4498,8 @@ nav .button-collapse i {
 
 nav .brand-logo {
   height: 56px;
-  left: 20%;
-  color: #fff;
+  left: 45%;
+  color: #000;
   display: inline-block;
   font-size: 2.1rem;
   padding: 0;
@@ -4498,14 +4507,17 @@ nav .brand-logo {
 }
 
 nav .brand-logo.center {
-  left: 50%;
+  left: 45%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
 }
 
 @media only screen and (max-width: 992px) {
   nav .brand-logo {
-    left: 20%;
+    left: 24%;
+    height: 30px;
+    margin-top: 15px;
+    width: auto;
     -webkit-transform: translateX(-50%);
             transform: translateX(-50%);
   }

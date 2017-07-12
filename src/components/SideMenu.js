@@ -13,8 +13,9 @@ class SideMenu extends React.Component {
     if(signedIn) {
     return (
         <Menu>
+        <span className="brand-logo side-menu">KIDFO</span><br /><br />
           { hasFamily ?
-            <div><br />
+            <div>
               <Link to="/kids/new"><i className="material-icons">person_pin</i>Add A Kid</Link><br />
               <Link to="/myfamily/edit"><i className="material-icons">mode_edit</i>Edit My Family</Link><br />
               <a href="#modalspouse"><i className="material-icons">email</i>Invite Spouse</a><br />
