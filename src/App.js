@@ -37,6 +37,7 @@ class App extends Component {
       localStorage.setItem('token', this.state.user.authentication_token);
       localStorage.setItem('email', this.state.user.email);
       localStorage.setItem('family', this.state.user.family_id);
+      localStorage.setItem('userImage', this.state.user.image.url);
       localStorage.setItem('signedIn', true);
       window.location.reload()
     })
@@ -129,9 +130,9 @@ class App extends Component {
                 </div>
             }
             </div>
-
            </div>
       </Router>
+
     );
   }
 }

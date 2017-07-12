@@ -26,6 +26,8 @@ class EditFamily extends React.Component {
         this.props.editFamily(formData, this.props.family.id);
     };
 
+
+
     render() {
 
     const { family, editFamily, editFamilyForm } = this.props;
@@ -47,11 +49,12 @@ class EditFamily extends React.Component {
             <div className="input-field col s6 active">
                   <input
                     id="name"
+                    placeholder=" "
                     defaultValue={family.name}
                     type="text" className="validate"
                     ref={(input) => this.name = input}
                   />
-                  <label for="name">Name</label>
+                  <label className={family ? 'active' : 'inactive'} for="name">Name</label>
               </div>
               <div className="input-field col s6">
                   <input
@@ -59,7 +62,7 @@ class EditFamily extends React.Component {
                     id="emerg_contact_1" type="text" className="validate"
                     ref={(input) => this.emerg_contact_1 = input}
                   />
-                  <label for="emerg_contact_1">Emergency Contact 1</label>
+                  <label className={family ? 'active' : 'inactive'} for="emerg_contact_1">Emergency Contact 1</label>
               </div>
               <div className="input-field col s6">
                   <input
@@ -67,7 +70,7 @@ class EditFamily extends React.Component {
                     id="emerg_contact_1" type="text" className="validate"
                     ref={(input) => this.emerg_contact_1_phone = input}
                   />
-                  <label for="emerg_contact_1_phone">Emergency Contact 1 Phone</label>
+                  <label className={family ? 'active' : 'inactive'} for="emerg_contact_1_phone">Emergency Contact 1 Phone</label>
               </div>
               <div className="input-field col s6">
                   <input
@@ -75,7 +78,7 @@ class EditFamily extends React.Component {
                     id="emerg_contact_1" type="text" className="validate"
                     ref={(input) => this.emerg_contact_2 = input}
                   />
-                  <label for="emerg_contact_2">Emergency Contact 2</label>
+                  <label className={family ? 'active' : 'inactive'} for="emerg_contact_2">Emergency Contact 2</label>
               </div>
               <div className="input-field col s6">
                   <input
@@ -83,7 +86,7 @@ class EditFamily extends React.Component {
                     id="emerg_contact_1" type="text" className="validate"
                     ref={(input) => this.emerg_contact_2_phone = input}
                   />
-                  <label for="emerg_contact_2_phone">Emergency Contact 2 Phone</label>
+                  <label className={family ? 'active' : 'inactive'} for="emerg_contact_2_phone">Emergency Contact 2 Phone</label>
               </div>
               <div className="input-field col s6">
                   <input
@@ -91,7 +94,7 @@ class EditFamily extends React.Component {
                     id="insuranceprovider" type="text" className="validate"
                     ref={(input) => this.insuranceprovider = input}
                   />
-                  <label for="insuranceprovider">Insurance Provider</label>
+                  <label className={family ? 'active' : 'inactive'} for="insuranceprovider">Insurance Provider</label>
               </div>
               <div className="input-field col s6">
                   <input
@@ -99,7 +102,7 @@ class EditFamily extends React.Component {
                     id="health_ins_enrollee_id" type="text" className="validate"
                     ref={(input) => this.health_ins_enrollee_id = input}
                   />
-                  <label for="health_ins_enrollee_id">Enrollee ID</label>
+                  <label className={family ? 'active' : 'inactive'} for="health_ins_enrollee_id">Enrollee ID</label>
               </div>
               <div className="input-field col s6">
                   <input
@@ -107,7 +110,7 @@ class EditFamily extends React.Component {
                     id="health_ins_group_num" type="text" className="validate"
                     ref={(input) => this.health_ins_group_num = input}
                   />
-                  <label for="health_ins_group_num">Group Number</label>
+                  <label className={family ? 'active' : 'inactive'} for="health_ins_group_num">Group Number</label>
               </div>
               <div className="input-field col s6">
                   <input
@@ -115,7 +118,7 @@ class EditFamily extends React.Component {
                     id="physicianname" type="text" className="validate"
                     ref={(input) => this.physicianname = input}
                   />
-                  <label for="physicianname">Physician Name</label>
+                  <label className={family ? 'active' : 'inactive'} for="physicianname">Physician Name</label>
               </div>
               <div className="input-field col s6">
                   <input
@@ -123,7 +126,7 @@ class EditFamily extends React.Component {
                     id="health_ins_group_num" type="text" className="validate"
                     ref={(input) => this.physicianphone = input}
                   />
-                  <label for="physicianphone">Physician Phone</label>
+                  <label className={family ? 'active' : 'inactive'} for="physicianphone">Physician Phone</label>
               </div>
             </div>
           <input className="waves-effect waves-light btn" type="submit" value="Submit" />

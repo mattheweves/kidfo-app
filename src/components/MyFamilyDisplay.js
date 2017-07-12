@@ -11,7 +11,7 @@ class MyFamilyDisplay extends React.Component {
 
     return (
       <div className="col s12 m8 offset-m2 l6 offset-l3">
-        <div className="card-panel grey lighten-5 z-depth-1">
+        <div className="card-panel grey lighten-4 z-depth-1">
           <div className="col s8 offset-s2">
             {family.image ? <img src={family.image.url} alt="" className="responsive-img"></img>: "" }
           </div>

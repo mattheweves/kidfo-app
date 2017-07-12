@@ -65,7 +65,7 @@ class EditUserProfile extends React.Component {
                       defaultValue={user.first_name}
                       ref={(input) => this.first_name = input}
                     />
-                    <label for="name">First Name</label>
+                    <label className={user ? 'active' : 'inactive'} for="name">First Name</label>
                 </div>
                 <div className="input-field col s3">
                     <input
@@ -73,7 +73,7 @@ class EditUserProfile extends React.Component {
                       defaultValue={user.last_name}
                       ref={(input) => this.last_name = input}
                     />
-                    <label for="name">Last Name</label>
+                    <label className={user ? 'active' : 'inactive'} for="name">Last Name</label>
                 </div>
                 <div className="input-field col s6">
                     <input
@@ -81,7 +81,7 @@ class EditUserProfile extends React.Component {
                       defaultValue={user.phone_number}
                       ref={(input) => this.phone_number = input}
                     />
-                    <label for="name">Phone Number</label>
+                    <label className={user ? 'active' : 'inactive'} for="name">Phone Number</label>
                 </div>
                 <div className="input-field col s12">
                     <input
@@ -89,7 +89,7 @@ class EditUserProfile extends React.Component {
                       defaultValue={user.motto}
                       ref={(input) => this.motto = input}
                     />
-                    <label for="name">Parenting/Sitting Motto</label>
+                    <label className={user ? 'active' : 'inactive'} for="name">Parenting/Sitting Motto</label>
                 </div>
               </div>
             <input className="waves-effect waves-light btn" type="submit" value="Submit" />

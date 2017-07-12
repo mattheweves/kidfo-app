@@ -11,7 +11,7 @@ class KidProfile extends React.Component {
         <div className="row">
         <div className="row">
          <br />
-            { kid.image? <img className="responsive-img circle col s4 offset-s4" src={kid.image.url} ></img> : "" } 
+            { kid.image ? <img className="circle col s4 m4 l4 offset-s4 offset-m4 offset-l4 responsive-img" src={kid.image.url} ></img> : "" } 
           </div>
           <div className="col s12" >
             <div className="col s6 offset-s3">

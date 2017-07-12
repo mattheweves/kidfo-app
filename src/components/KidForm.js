@@ -76,7 +76,7 @@ class KidForm extends React.Component {
                     type="text" className="validate"
                     ref={(input) => this.name = input}
                   />
-                  <label for="name">Name</label>
+                  <label className={kid ? 'active' : 'inactive'} for="name">Name</label>
               </div>
               <div className="input-field col s6">
                   <input
@@ -85,7 +85,7 @@ class KidForm extends React.Component {
                     id="birthdate" type="text" className="validate"
                     ref={(input) => this.birthdate = input}
                   />
-                  <label for="birthdate">Birth Date</label>
+                  <label className={kid ? 'active' : 'inactive'} for="birthdate">Birth Date</label>
               </div>
               <div className="input-field col s6">
                   <input
@@ -94,7 +94,7 @@ class KidForm extends React.Component {
                     id="gender" type="text" className="validate"
                     ref={(input) => this.gender = input}
                   />
-                  <label for="gender">Gender</label>
+                  <label className={kid ? 'active' : 'inactive'} for="gender">Gender</label>
               </div>
               <div className="input-field col s6">
                   <input
@@ -102,7 +102,7 @@ class KidForm extends React.Component {
                     id="allergies" type="text" className="validate"
                     ref={(input) => this.allergies = input}
                   />
-                  <label for="allergies">Allergies</label>
+                  <label className={kid ? 'active' : 'inactive'} for="allergies">Allergies</label>
               </div>
               <div className="input-field col s6">
                   <input
@@ -111,7 +111,7 @@ class KidForm extends React.Component {
                     id="bedtime" type="text" className="validate"
                     ref={(input) => this.bedtime = input}
                   />
-                  <label for="bedtime">BedTime</label>
+                  <label className={kid ? 'active' : 'inactive'} for="bedtime">BedTime</label>
               </div>
             </div>
             <div className="row">
@@ -121,7 +121,7 @@ class KidForm extends React.Component {
                   id="sleeproutine" className="materialize-textarea"
                   ref={(textarea) => this.sleeproutine = textarea}
                 />
-                <label for="sleeproutine">Sleep Routine</label>
+                <label className={kid ? 'active' : 'inactive'} for="sleeproutine">Sleep Routine</label>
               </div>
             </div>
             <div className="row">
@@ -131,7 +131,7 @@ class KidForm extends React.Component {
                   id="eatdetails" className="materialize-textarea"
                   ref={(textarea) => this.eatdetails = textarea}
                 />
-                <label for="eatdetails">Eat Details</label>
+                <label className={kid ? 'active' : 'inactive'} for="eatdetails">Eat Details</label>
               </div>
             </div>
             <div className="row">
@@ -142,7 +142,7 @@ class KidForm extends React.Component {
                     type="text" className="validate"
                     ref={(input) => this.nonos = input}
                   />
-                  <label for="nonos">No-Nos</label>
+                  <label className={kid ? 'active' : 'inactive'} for="nonos">No-Nos</label>
               </div>
             </div>
           <input className="waves-effect waves-light btn" type="submit" value="Submit" />

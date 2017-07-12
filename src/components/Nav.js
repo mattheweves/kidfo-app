@@ -7,7 +7,7 @@ class Nav extends React.Component {
 
   render() {
 
-    const { signOut, signedIn } = this.props;
+    const { signOut, signedIn, user } = this.props;
     const hasFamily = localStorage.getItem('family') > 0;
     const haveSpouse = localStorage.getItem('SpouseConnected');
 
@@ -15,18 +15,16 @@ class Nav extends React.Component {
       <div>
       <nav>
         <div className="nav-wrapper">
-          <a href="#" className="brand-logo left">KIDFO</a>
-          <SideMenu signedIn={signedIn} hasFamily={hasFamily}/>
-          <ul id="nav-mobile" className="right hide-on-sm-and-down">
+          <Link to="/home" ><img className="brand-logo left" src='/img/kidfologo.png'></img></Link>
+          <SideMenu user={user} signedIn={signedIn} hasFamily={hasFamily} signOut={signOut}/>
+          <ul id="nav-mobile" className="button-collapse right hide-on-sm-and-down">
           {
             signedIn === "true" ?
             <div>
-              <li><Link to="/home" >Home</Link></li>
               { hasFamily && <li><Link to="/kids" onClick="window.location.reload()" >Kids</Link></li> }
               <li><Link to="/families" onClick="window.location.reload()">Families</Link></li>
               { hasFamily && <li><Link to="/myfamily">My Family</Link></li> }
               { hasFamily && <li><Link to="/sitters" onClick="window.location.reload()">Sitters</Link></li>}
-              <li><a onClick={() => signOut()}>Sign Out</a></li>
             </div>
             :
             <div>
@@ -38,7 +36,7 @@ class Nav extends React.Component {
         </div>
      </nav>
      <br /><br />
-     </div>
+        </div>
     );
   }
 
