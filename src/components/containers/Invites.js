@@ -6,7 +6,7 @@ import axios from 'axios';
 
 class Invites extends React.Component {
 
-  componentWillMount() {
+  componentDidMount() {
     this.getInvites();
   }
 
@@ -25,9 +25,8 @@ class Invites extends React.Component {
 
   responseInvite = (id, action) => {
     axios.post(urlFor(`invites/${id}/${action}`),userAuth())
-    .then((res) => this.setState({ invites: res.data }))
-    .catch((err) => console.log(err.response) );
-    window.location.reload();
+    .then((res) => this.getInvites())
+    .catch((err) => this.getInvites());
   }
 
   render() {

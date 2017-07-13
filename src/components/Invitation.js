@@ -7,7 +7,6 @@ import axios from 'axios';
 class Invitation extends React.Component {
 
   onSubmit(e, inviteType) {
-    e.preventDefault();
     var emailval = "";
 
     { inviteType == "for_spouse" ? emailval=this.emailspouse.value : emailval=this.emailsitter.value};
