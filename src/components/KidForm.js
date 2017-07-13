@@ -9,7 +9,7 @@ import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom
 class KidForm extends React.Component {
 
     onSubmit(e) {
-
+      e.preventDefault();
       const formData = {
          name: this.name.value,
          gender: this.gender.value,
@@ -22,7 +22,6 @@ class KidForm extends React.Component {
       };
         this.submitKid(formData, this.props.kid.id);
         this.setState({ redirectToReferrer: true })
-        window.location.reload();
 
     };
 
@@ -50,6 +49,7 @@ class KidForm extends React.Component {
             this.setState({ error: "Error: check your Data!"});
           }
       });
+      window.location.reload();
     }
 
 

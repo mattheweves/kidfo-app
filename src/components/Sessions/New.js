@@ -7,6 +7,7 @@ import axios from 'axios';
 class New extends React.Component {
 
   onSubmit(e) {
+    e.preventDefault();
     const formData = {
        email: this.email.value,
        password: this.password.value,
