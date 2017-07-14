@@ -14,8 +14,8 @@ class UserProfile extends React.Component {
           </div>
           <div className="row">
             <div className="col s6 offset-s3">
-                <h3>{user.first_name} {user.last_name}</h3>
-                Parenting Motto: <i>{user.motto}</i>
+                <h4>{user.first_name} {user.last_name}</h4>
+                <b>Motto:</b> <i>{user.motto}</i>
                 <p>Email: {user.email}<br />Phone: {user.phone_number}</p>
             </div>
         </div>

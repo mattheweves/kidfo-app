@@ -60,9 +60,6 @@ class KidProfile extends React.Component {
                      Physician Name: {kid.family.physicianname}<br />
                      Physician Phone: {kid.family.physicianphone}<br /></p>
                  </div>
-                 <div className="card-action">
-                   <a href="#">Download</a>
-                 </div>
                </div>
              </div>
              <div className="col s12 m6">

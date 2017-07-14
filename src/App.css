@@ -69,18 +69,18 @@
   margin-left: -250px;
   top: 10%;
   background: white;
-  color: rgb(198, 79, 79);
+  color: #50a8d0;
+  border-radius: 20px;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   width: 500px;
-  height: 50px;
+  height: 70px;
   text-align: center;
   z-index: 100;
   padding-top: 20px;
   padding-bottom: 20px;
   -webkit-transition: all 0.3s ease-in;
   transition: all 0.3s ease-in;
-  font-family: 'Playfair Display', serif;
-  font-size: 1.0em;
+  font-size: 1.5em;
   letter-spacing: 0.6px;
 }
 
@@ -151,6 +151,9 @@
 .bm-overlay {
   background: rgba(0, 0, 0, 0.3);
 }
+
+
+
 
 
 /* nav.css */

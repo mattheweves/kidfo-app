@@ -39,9 +39,6 @@ class MyFamilyDisplay extends React.Component {
                    Physician Name: {family.physicianname}<br />
                    Physician Phone: {family.physicianphone}<br /></p>
                </div>
-               <div className="card-action">
-                 <a href="#">Download</a>
-               </div>
              </div>
            </div>
            <div className="col s12 m6">

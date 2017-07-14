@@ -42,11 +42,14 @@ class App extends Component {
       window.location.reload()
     })
     .catch((err) => {
-       const { errors } = err.response.status;
-        if (errors === 401) {
-          this.setState({ error: "Missing Name!" });
-        } else  {
-          this.setState({ error: "General Submission Error: Check your Data!"});
+        if (err.response.status == 401) {
+          this.setState({ error: "Invalid Login." });
+        }
+        else if(err.response.status == 404) {
+          this.setState({ error: "No account found with that email."});
+        }
+        else {
+          this.setState({ error: "Unknown Error."});
         }
     });
   }
