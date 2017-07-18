@@ -21,7 +21,6 @@ class EditUserProfile extends React.Component {
     };
        this.editUser(formData);
        this.setState({ redirectToReferrer: true })
-       window.location.reload();
     };
 
     state = {
@@ -43,7 +42,7 @@ class EditUserProfile extends React.Component {
 
     if (redirectToReferrer) {
       return (
-        <Redirect from='/profile/edit' to='/'/>
+        <Redirect from='/profile/edit' to='/home'/>
       )
     }
     return (

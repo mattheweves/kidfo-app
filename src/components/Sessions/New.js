@@ -31,28 +31,34 @@ class New extends React.Component {
       )
     }
     return (
-        <div className="row">
-          <form
-            className="col s12"
-            onSubmit={(e) => this.onSubmit(e)}
-          >
-              <div className="input-field col s6">
-                    <input
-                      id="email" placeholder="email" type="text" className="validate"
-                      ref={(input) => this.email = input}
-                    />
-                    <label for="email">Email</label>
-              </div>
-              <div className="input-field col s6">
-                    <input
-                      id="password" type="password" className="validate"
-                      ref={(input) => this.password = input}
-                    />
-                    <label for="password">Password</label>
-              </div>
+        <div className="form">
+          <img className="brand-logo responsive-img" src='/img/loginbrand.png'></img>
+          <br /><br />
+                  <form
+                    className="col s12"
+                    onSubmit={(e) => this.onSubmit(e)}
+                  >
+                  <div className="card-title">
 
-          <input className="waves-effect waves-light btn" type="submit" value="Submit" />
-          </form>
+                  </div>
+                      <div className="input-field col s6">
+                            <input
+                              id="email" type="text" className="validate"
+                              ref={(input) => this.email = input}
+                            />
+                            <label for="email">Email</label>
+                      </div>
+                      <div className="input-field col s6">
+                            <input
+                              id="password" type="password" className="validate"
+                              ref={(input) => this.password = input}
+                            />
+                            <label for="password">Password</label>
+                      </div>
+                      <input className="waves-effect waves-light btn" type="submit" value="Login" />
+                  </form><br />
+                  <center>No Account? <Link to="/sign_up">Sign Up</Link></center>
+
       </div>
     );
   }

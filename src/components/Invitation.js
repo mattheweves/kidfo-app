@@ -38,7 +38,7 @@ class Invitation extends React.Component {
          <div>
              <div id="modalspouse" className="modal bottom-sheet">
                <div className="modal-content">
-                 <h4>Invite Spouse</h4>
+                 <h4>Invite Spouse/Partner</h4>
                  <form
                    onSubmit={(e) => this.onSubmit(e, "for_spouse")}
                  >
@@ -50,7 +50,7 @@ class Invitation extends React.Component {
                            <label for="email">Email</label>
                      </div>
                      <div className="modal-footer">
-                       <input className="waves-effect waves-light btn" type="submit" value="Submit" />
+                       <input className="waves-effect waves-light btn" type="submit" value="Send Invite" />
                      </div>
                  </form>
                </div>
@@ -70,7 +70,7 @@ class Invitation extends React.Component {
                            <label for="email">Email</label>
                      </div>
                      <div className="modal-footer">
-                       <input className="waves-effect waves-light btn" type="submit" value="Submit"/>
+                       <input className="waves-effect waves-light btn" type="submit" value="Send Invite"/>
                      </div>
                  </form>
                </div>

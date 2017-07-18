@@ -1,31 +1,20 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Redirect, Route, History, Link, BrowserHistory } from 'react-router-dom';
-import './App.css';
-import Nav from './components/Nav';
-import Sitters from './components/containers/Sitters';
-import Families from './components/containers/Families';
-import User from './components/containers/User';
-import UserProfile from './components/UserProfile';
-import Home from './components/containers/Home';
-import Kids from './components/containers/Kids';
-import KidForm from './components/KidForm';
+import App from './App';
+import './Welcome.css';
 import SignUp from './components/pages/SignUp';
-import EnableFamily from './components/pages/EnableFamily';
-import EditFamily from './components/EditFamily';
 import urlFor from './helpers/urlFor';
 import userAuth from './helpers/userAuth';
 import axios from 'axios';
 import New from './components/Sessions/New';
-import Invitation from './components/Invitation';
 import Flash from './components/Flash';
 
-class App extends Component {
+class Welcome extends Component {
   constructor (props) {
     super(props);
     this.state = {
       signedIn: localStorage.getItem('signedIn'),
       error: '',
-      kid: {},
       user: {}
     };
   }
@@ -98,48 +87,34 @@ class App extends Component {
   render() {
 
     const {
-            user, signIn, signOut, signedIn, kid,
+            user, signIn, signOut, signedIn,
             error
            } = this.state;
-    if(signedIn == "true") {
+
+    if(signedIn === "true") {
     return (
-      <Router>
-          <div className="App">
-            <Nav
-              user={user}
-              goHome={this.goHome}
-              signOut={this.signOut}
-              signedIn={signedIn}
-            />
-            <div className="container">
-            { error && <Flash error={error} resetError={this.resetError} /> }
-                <div>
-                  <User user={user} />
-                  <Route exact path="/kids" component={Kids}/>
-                  <Route path="/kids/new" render={props =><KidForm kid={kid}/> } />
-                  <Route path="/families" component={Families}/>
-                  <Route path="/sitters" component={Sitters}/>
-                  <Route exact path="/myfamily/enable" component={EnableFamily}/>
-                    <Invitation
-                      sendInvite={this.sendInvite}
-                    />
-                </div>
-              </div>
-           </div>
-      </Router>
+      <App />
     );
     }
    else {
      return(
-      <Router>
-       <div className="login">
-         <Route exact path="/login" render={props => <New user={user} signIn={this.signIn} signedIn={signedIn} />  } />
-         <Route exact path="/sign_up" render={props => <SignUp user={user} signUp={this.signUp}/>  } />
+       <Router>
+       <div className="welcome">
+              <div className="container custom-container login">
+                <div className="panel panel-default">
+                    <div className="panel-body">
+                      <Route exact path="/sign_up" render={props => <SignUp user={user} signUp={this.signUp}/>  } />
+                      <Route exact path="/" render={props => <New user={user} signIn={this.signIn} signedIn={signedIn} />  } />
+                    </div>
+                </div>
+                <button id="flow-button" className="btn btn-custom btn-block not-visible">Sign in</button>
+            </div>
        </div>
       </Router>
+
      );
    }
   }
 }
 
-export default App;
+export default Welcome;

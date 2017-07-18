@@ -32,7 +32,8 @@ class SignUp extends React.Component {
       )
     }
     return (
-      <div className="row">
+      <div className="form">
+      <img className="brand-logo responsive-img" src='/img/loginbrand.png'></img>
           <form
             className="col s12"
             onSubmit={(e) => this.onSubmit(e)}
@@ -45,14 +46,14 @@ class SignUp extends React.Component {
                   />
                   <label for="name">Email</label>
               </div>
-              <div className="input-field col s6">
+              <div className="input-field col s12">
                   <input
                     id="password" type="password" className="validate"
                     ref={(input) => this.password = input}
                   />
                   <label for="name">Password</label>
               </div>
-              <div className="input-field col s6">
+              <div className="input-field col s12">
                   <input
                     id="password_confirmation" type="password" className="validate"
                     ref={(input) => this.password_confirmation = input}
@@ -61,7 +62,8 @@ class SignUp extends React.Component {
               </div>
             </div>
           <input className="waves-effect waves-light btn" type="submit" value="Create Account" />
-          </form>
+          </form><br />
+          <center>Have An Account?<br /><Link to="/">Sign In</Link></center>
       </div>
 
     );

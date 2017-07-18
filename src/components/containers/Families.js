@@ -64,7 +64,13 @@ class Families extends React.Component {
           );
         }
       else
-       { return null; }
+       { return(
+         <div>
+           You are not a sitter for any families at this time.  Have them invite you via your email address, and once you accept the invitation, their family info and KIDFO will show up here!<br /><br />
+            <Link to="/home" className="waves-effect waves-light btn">Go Home</Link>
+          </div>
+
+       ); }
       }
     }
 

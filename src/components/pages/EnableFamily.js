@@ -24,7 +24,6 @@ class EnableFamily extends React.Component {
         localStorage.setItem('family', res.family.id);
       })
       .catch((err) => {
-        console.log(err.response.status);
         if (err.response.status == 401) {
           this.setState( { familyEnabled: true });
         }
