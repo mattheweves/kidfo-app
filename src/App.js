@@ -20,6 +20,19 @@ import Invitation from './components/Invitation';
 import Flash from './components/Flash';
 
 class App extends Component {
+
+  componentDidMount() {
+    const ele = document.getElementById('ipl-progress-indicator')
+    if(ele){
+      setTimeout(() => {
+        ele.classList.add('available')
+        setTimeout(() => {
+          ele.outerHTML = ''
+        }, 4000)
+      }, 1000)
+    }
+  }
+
   constructor (props) {
     super(props);
     this.state = {

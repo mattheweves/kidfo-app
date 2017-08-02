@@ -5,7 +5,7 @@ import Invites from './Invites';
 class Home extends React.Component {
 
 
-  componentWillMount() {
+  componentDidMount() {
     this.getKids();
   }
 
