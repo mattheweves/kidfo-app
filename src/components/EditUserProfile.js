@@ -20,7 +20,8 @@ class EditUserProfile extends React.Component {
        motto: this.motto.value
     };
        this.editUser(formData);
-       this.setState({ redirectToReferrer: true })
+       window.location.reload();
+       this.setState({ redirectToReferrer: true });
     };
 
     state = {
@@ -30,7 +31,6 @@ class EditUserProfile extends React.Component {
   editUser = (formdata) => {
     axios.patch(urlFor('accounts'),formdata,userAuth())
     .then((res) => {
-      this.props.setState( { user: res.data, signedIn: true });
       localStorage.setItem('token', this.props.user.authentication_token);
     })
     .catch((err) => console.log(err.response) );

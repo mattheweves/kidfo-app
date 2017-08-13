@@ -7,7 +7,7 @@ class MyFamilyDisplay extends React.Component {
   render() {
 
     const { family, getFamily, editMyFamily } = this.props;
-
+    const showParents = "true";
 
     return (
       <div className="col s12 m8 offset-m2 l6 offset-l3">
@@ -19,6 +19,15 @@ class MyFamilyDisplay extends React.Component {
             <div className="col s6 left-align">
               <div><h5>The { family.name } Family</h5></div>
               <br />
+              Parents: { showParents === "true" && family.parents ?
+                 family.parents.map((p, index) => {
+                    return(
+                      <div>{p.first_name} {p.last_name}</div>
+                    );
+                  })
+                   :
+                   ""
+             }
             </div>
             <div className="col s4">
               <span className="right-align" onClick={() => editMyFamily()}>

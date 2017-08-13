@@ -57,7 +57,7 @@ class User extends React.Component {
     const { user, family, editFamily, editFamilyForm, getMyAccount } = this.state;
       return(
         <div>
-          <Route exact path ="/home" render={props => <UserProfile user={user} />  } />
+          <Route exact path ="/home" render={props => <UserProfile user={user} getMyAccount={this.getMyAccount} />  } />
           <Route exact path ="/profile/edit" render={props => <EditUserProfile user={user} getMyAccount={this.getMyAccount} />  } />
           <Route exact path="/myfamily" render={props => <MyFamilyDisplay family={family} editMyFamily={this.editMyFamily} getMyFamily={this.getMyFamily} />  }   />
           <Route exact path="/myfamily/edit" render={props => <EditFamily family={family} editFamilyForm={editFamilyForm} editFamily={this.editFamily} getMyFamily={this.getMyFamily} />  }   />

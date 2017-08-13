@@ -25,10 +25,11 @@ class EnableFamily extends React.Component {
       })
       .catch((err) => {
         if (err.response.status == 401) {
-          this.setState( { familyEnabled: true });
+          this.setState( { familyEnabled: false });
+          this.setState({ error: "You cannot enable a Family Account."});
         }
       });
-        }
+    }
 
   render() {
 

@@ -29,7 +29,7 @@ class App extends Component {
         setTimeout(() => {
           ele.outerHTML = ''
         }, 4000)
-      }, 1000)
+      }, 2000)
     }
   }
 

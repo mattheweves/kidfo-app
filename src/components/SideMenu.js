@@ -9,7 +9,7 @@ class SideMenu extends React.Component {
   }
 
   render () {
-    const { hasFamily, user, signedIn, signOut } = this.props;
+    const { hasFamily, user, signedIn, signOut, family } = this.props;
     if(signedIn) {
     return (
         <Menu>
@@ -18,8 +18,13 @@ class SideMenu extends React.Component {
             <div>
               <Link to="/kids/new"><i className="material-icons">person_pin</i>Add A Kid</Link><br />
               <Link to="/myfamily/edit"><i className="material-icons">mode_edit</i>Edit My Family</Link><br />
-              <a href="#modalspouse"><i className="material-icons">email</i>Invite Spouse/Partner</a><br />
               <a href="#modalsitter"><i className="material-icons">email</i>Invite Sitter</a><br />
+                { family.parents && family.parents.length > 1
+                  ?
+                    <a href=""><i className="material-icons">all_inclusive</i>Spouse/Partner Connected</a>
+                  :
+                    <a href="#modalspouse"><i className="material-icons">email</i>Invite Spouse/Partner</a>
+                 }
             </div>
             :
             <li><Link to="/myfamily/enable"><i className="material-icons">supervisor_account</i>Enable Family Account</Link></li>
