@@ -61,7 +61,7 @@ class User extends React.Component {
           <Route exact path ="/profile/edit" render={props => <EditUserProfile user={user} getMyAccount={this.getMyAccount} />  } />
           <Route exact path="/myfamily" render={props => <MyFamilyDisplay family={family} editMyFamily={this.editMyFamily} getMyFamily={this.getMyFamily} />  }   />
           <Route exact path="/myfamily/edit" render={props => <EditFamily family={family} editFamilyForm={editFamilyForm} editFamily={this.editFamily} getMyFamily={this.getMyFamily} />  }   />
-          <Route path="/home" component={Invites} />
+          <Invites />
         </div>
       );
 
